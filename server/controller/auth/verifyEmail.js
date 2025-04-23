@@ -1,0 +1,20 @@
+const userSchema = require("../../models/userSchema")
+
+const verifyEmail = async (req, res) => {
+
+    const { email, OTP } = req.body
+
+    if (!email || !OTP) return res.status(400).send("Invalid Request")
+
+    const verified_ID = await userSchema.findOne({ email, OTP, OTP_expire: { $gt: Date.now() } })
+
+    if(!verified_ID) return res.status(400).send("Invalid OTP")
+
+        verified_ID.OTP = null,
+        verified_ID.OTP_expire = null,
+        verified_ID.isVerified = true,
+        verified_ID.save()
+        res.status(200).send("Verified Successfull")
+}
+
+module.exports = verifyEmail

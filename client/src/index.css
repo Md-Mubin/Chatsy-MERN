@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+body{
+  @apply bg-[#212121]
+}
+
+.submitBtn{
+  @apply py-5 bg-[#555] rounded-lg text-xl text-[#fff] font-semibold tracking-widest
+}
+
+.input-group {
+  position: relative;
+  width: 100%;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 16px 20px;
+  background-color: #505050;
+  color: #fff;
+  font-size: 18px;
+  border: 2px solid #777;
+  border-radius: 8px;
+  outline: none;
+}
+
+.input-group label {
+  position: absolute;
+  left: 25px;
+  top: 16px;
+  color: #9b9b9b;
+  font-size: 18px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  background-color: #505050;
+  padding: 0 15px;
+  border: none;
+}
+
+.input-group input:focus {
+  border-color: #5dc98a;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 10px;
+  font-size: 16px;
+  color: #5dc98a;
+  box-shadow: 0px -2px 0px #777777;
+  border-radius: 50%;
+}
+
+.input-group input:focus + label{
+  box-shadow: 0px -2px 0px #5dc98a;
+}
