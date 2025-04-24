@@ -18,23 +18,6 @@ const coversation = async (req, res) => {
     }
 
     // check if the conversation already exists
-    // const existConvo = await convoSchema.findOne({
-    //     $or : [
-    //         {
-    //             $and : [
-    //                 {creator : req.user.id},
-    //                 {participent : participentData.id}
-    //             ]
-    //         },
-    //         {
-    //             $and : [
-    //                 {creator : participentData.id},
-    //                 {participent : req.user.id}
-    //             ]
-    //         }
-    //     ]
-    // })
-
     const existConvo = await convoSchema.findOne({
         $or: [
             {
