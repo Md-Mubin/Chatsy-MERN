@@ -7,20 +7,24 @@ const forgetPass = async (req, res) => {
 
     const { email } = req.body
 
-    if (!email) return res.status(400).send("Email Required")
+    try {
+        if (!email) return res.status(400).send("Email Required")
 
-    const existUser = await userSchema.findOne({ email })
-    if (!existUser) return res.status(400).send("Something Went Wrong")
+        const existUser = await userSchema.findOne({ email })
+        if (!existUser) return res.status(400).send("Something Went Wrong")
 
-    const createdString = generateRandomString(30)
+        const createdString = generateRandomString(30)
 
-    existUser.resetPassId = createdString
-    existUser.resetPassIdExpiresAt = new Date(Date.now() + 5 * 60 * 1000)
-    existUser.save()
+        existUser.resetPassId = createdString
+        existUser.resetPassIdExpiresAt = new Date(Date.now() + 5 * 60 * 1000)
+        existUser.save()
 
-    resetPassOTP(existUser.name , email, "Reset Password", resetPassTamplet, createdString)
+        resetPassOTP(existUser.name, email, "Reset Password", resetPassTamplet, createdString)
 
-    res.status(200).send("Reset Pass Check Your Email")
+        res.status(200).send("Reset Pass Check Your Email")
+    } catch (error) {
+        return res.status(500).send("Server Error")
+    }
 }
 
 module.exports = forgetPass
