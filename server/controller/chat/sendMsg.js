@@ -1,4 +1,5 @@
 const chatSchema = require("../../models/chatSchema")
+const convoSchema = require("../../models/convoSchema")
 
 const sendMsg = async (req,res)=>{
 
@@ -24,6 +25,8 @@ const sendMsg = async (req,res)=>{
     })
 
     newMsg.save()
+
+    await convoSchema.findByIdAndUpdate(conversationID, {lastMsg : newMsg})
 
     return res.status(200).send(newMsg)
 }
