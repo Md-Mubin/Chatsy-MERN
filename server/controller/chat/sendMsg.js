@@ -1,3 +1,5 @@
+const chatSchema = require("../../models/chatSchema")
+
 const sendMsg = async (req,res)=>{
 
     const {reciverID, content, conversationID} = req.body
@@ -13,6 +15,17 @@ const sendMsg = async (req,res)=>{
     if(!conversationID){
         return res.status(400).send("Something went wrong")
     }
+
+    const newMsg = new chatSchema({
+        sender : req.user.id,
+        reciver : reciverID,
+        content,
+        conversations : conversationID
+    })
+
+    newMsg.save()
+
+    return res.status(200).send(newMsg)
 }
 
 module.exports = sendMsg
