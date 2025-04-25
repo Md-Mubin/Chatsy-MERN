@@ -20,18 +20,24 @@ const sendMsg = async (req,res)=>{
         return res.status(400).send("Something went wrong")
     }
 
+    const existChat = await chatSchema.findOne({_id : conversationID})
+
+    if(!existChat){
+        return res.status(400).send("No Conversation Found")
+    }
+
     // create new massage
     const newMsg = new chatSchema({
         sender : req.user.id,
         reciver : reciverID,
         content,
-        conversations : conversationID
+        conversations : existChat._id
     })
 
     newMsg.save()
 
     // send last msg to conversation list schema
-    await convoSchema.findByIdAndUpdate(conversationID, {lastMsg : newMsg})
+    await convoSchema.findByIdAndUpdate(existChat._id, {lastMsg : newMsg})
 
     return res.status(200).send(newMsg)
 }
