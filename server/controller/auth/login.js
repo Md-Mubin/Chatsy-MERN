@@ -3,9 +3,9 @@ const jwt = require("jsonwebtoken")
 
 const login = async (req, res) => {
 
-    const { email, pass } = req.body
-
     try {
+        const { email, pass } = req.body
+
         if (!email) return res.status(400).send("Email Required")
 
         const existUser = await userSchema.findOne({ email })
@@ -29,7 +29,7 @@ const login = async (req, res) => {
                 email: existUser.email,
                 id: existUser._id
             }
-        }, process.env.SECRET_ACC_TOKEN , { expiresIn: "1h" })
+        }, process.env.SECRET_ACC_TOKEN, { expiresIn: "1h" })
 
         return res.status(200).cookie(access_token).send({ msg: "Login Successfull", loggedUser, access_token })
     } catch (error) {

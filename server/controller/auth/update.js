@@ -4,9 +4,9 @@ const fs = require("fs")
 
 const update = async (req, res) => {
 
-    const { name, pass } = req.body
-
     try {
+        const { name, pass } = req.body
+
         // if user exists
         const existUser = await userSchema.findById(req.user.id)
 
