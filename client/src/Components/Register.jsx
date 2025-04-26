@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { Bounce, ToastContainer } from "react-toastify"
+import { Bounce, toast, ToastContainer } from "react-toastify"
+import { authoraizations } from '../Services/api'
 
 const Register = () => {
 
@@ -11,8 +12,18 @@ const Register = () => {
         pass: ""
     })
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
+
+        try {
+            const res = await authoraizations.registration(regForm)
+            toast.success(res.response.data.msg)
+            setTimeout(() => {
+                navigate("/OTP")
+            }, 1000);
+        } catch (error) {
+            toast.error(error.response.data.error)
+        }
     }
 
     return (
