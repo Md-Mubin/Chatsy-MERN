@@ -5,12 +5,13 @@ const resetPass = async (req, res) => {
     try {
         const { newPass } = req.body
 
+        if (!newPass) return res.status(400).send({ error: "Pass Required" })
+
         const randomString = req.params.randomString
 
         const email = req.query.email
 
-        if (!newPass) return res.status(400).send({ error: "Pass Required" })
-
+        // check if the user exists
         const existUser = await userSchema.findOne({ email, resetPassId: randomString, resetPassIdExpiresAt: { $gt: Date.now() } })
         if (!existUser) return res.status(400).send({ error: "Invalid Request" })
 

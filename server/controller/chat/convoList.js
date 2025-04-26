@@ -3,6 +3,7 @@ const convoSchema = require("../../models/convoSchema")
 const convoList = async (req, res) => {
 
     try {
+        // creating conversation lists
         const conversation = await convoSchema.find({
             $or: [
                 {

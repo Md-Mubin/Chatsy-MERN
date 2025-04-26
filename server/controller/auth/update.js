@@ -7,7 +7,7 @@ const update = async (req, res) => {
     try {
         const { name, pass } = req.body
 
-        // if user exists
+        // check if user exists
         const existUser = await userSchema.findById(req.user.id)
 
         if (name) existUser.name = name.trim();

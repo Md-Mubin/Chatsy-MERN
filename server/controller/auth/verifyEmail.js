@@ -6,7 +6,8 @@ const verifyEmail = async (req, res) => {
         const { email, OTP } = req.body
 
         // check if email / OTP is inputed
-        if (!email || !OTP) return res.status(400).send({ error: "Invalid Request" })
+        if (!email) return res.status(400).send({ error: "Invalid Request" })
+        if (!OTP) return res.status(400).send({ error: "Invalid Request" })
 
         // varifing
         const verified_ID = await userSchema.findOne({ email, OTP, OTP_expire: { $gt: Date.now() } })

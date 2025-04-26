@@ -50,6 +50,7 @@ const userSchmea = new SCHEMA({
     timestamps : true
 })
 
+// creating hash password and save it in schema
 userSchmea.pre("save", async function (next) {
     if (!this.isModified("pass")) return next()
 
@@ -57,6 +58,7 @@ userSchmea.pre("save", async function (next) {
     next()
 })
 
+// check if the req password = saved hash password in the database
 userSchmea.methods.isPassValid = async function(userPass) {
     return await bcrypt.compare(userPass, this.pass)
 }

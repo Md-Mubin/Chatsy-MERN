@@ -6,15 +6,16 @@ const userSchema = require("../../models/userSchema")
 
 const register = async (req, res) => {
 
-    const { name, email, pass } = req.body
-
     try {
+        const { name, email, pass } = req.body
+
         if (!name) return res.status(400).send({ error: "Name Required" })
 
         if (!email) return res.status(400).send({ error: "Email Required" })
 
         if (!emailValid(email)) return res.status(400).send({ error: "Email is not valid" })
 
+        // check if the user with the email already exists
         const existUser = await userSchema.findOne({ email })
         if (existUser) return res.status(400).send({ error: "User Already Exists" })
 
@@ -22,6 +23,7 @@ const register = async (req, res) => {
 
         if (passValid(pass)) return res.status(400).send(passValid(pass))
 
+        // generate random OTP
         const randomOTP = Math.floor(1000 + Math.random() * 9000)
 
         const newUser = new userSchema({
