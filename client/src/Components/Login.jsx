@@ -27,7 +27,7 @@ const Login = () => {
               </div>
 
               <div className='register_login'>
-                <Link to={"/"}>Forget Password?</Link>
+                <Link to={"/forget_password"}>Forget Password?</Link>
                 <Link to={"/register"}>Go To Registration</Link>
               </div>
 

@@ -5,6 +5,7 @@ import Login from './Components/Login'
 import AuthLayout from './Layouts/AuthLayout'
 import ChatLayout from './Layouts/ChatLayout'
 import Chats from './Components/Chats'
+import ForgetPass from './Components/ForgetPass'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path='/' element={<AuthLayout />}>
             <Route index element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/forget_password' element={<ForgetPass />} />
           </Route>
 
           <Route path='/chats' element={<ChatLayout />}>
