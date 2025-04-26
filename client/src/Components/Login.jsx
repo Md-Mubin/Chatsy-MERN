@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { Bounce, ToastContainer } from 'react-toastify'
+import { Bounce, toast, ToastContainer } from 'react-toastify'
 import { authoraizations } from '../Services/api'
 
 const Login = () => {
@@ -13,7 +13,6 @@ const Login = () => {
     email: "",
     pass: ""
   })
-
   // handling submit part for registration
   const handleSubmit = async (e) => {
     e.preventDefault()

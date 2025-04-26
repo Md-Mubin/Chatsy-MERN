@@ -21,11 +21,12 @@ const Register = () => {
 
         try {
             const res = await authoraizations.registration(regForm)
-            toast.success(res.response.data.msg)
+            toast.success(res.msg)
             setTimeout(() => {
                 navigate("/OTP")
-            }, 1000);
+            }, 2000);
         } catch (error) {
+            console.log(error)
             toast.error(error.response.data.error)
         }
     }
@@ -80,7 +81,7 @@ const Register = () => {
                                 <Link to={"/"}>Already Have Account? Go to Login</Link>
                             </div>
 
-                            <button className='submitBtn'>Login</button>
+                            <button className='submitBtn'>Register</button>
                         </form>
                     </li>
                 </ul>

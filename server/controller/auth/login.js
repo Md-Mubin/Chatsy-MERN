@@ -35,7 +35,7 @@ const login = async (req, res) => {
             }
         }, process.env.SECRET_ACC_TOKEN, { expiresIn: "1h" })
 
-        return res.status(200).cookie(access_token).send({ msg: "Login Successfull", loggedUser, access_token })
+        return res.status(200).cookie(access_token).send({ msg: `Welcome ${loggedUser.name}`, loggedUser, access_token })
     } catch (error) {
         return res.status(500).send({ error: "Server Error" })
     }

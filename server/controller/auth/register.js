@@ -38,7 +38,7 @@ const register = async (req, res) => {
 
         newUser.save()
 
-        return res.status(200).send({ msg: "Register Successfull" })
+        return res.status(200).send({ msg: "Registration Complete!" })
     } catch (error) {
         return res.status(500).send({ error: "Server Error" })
     }

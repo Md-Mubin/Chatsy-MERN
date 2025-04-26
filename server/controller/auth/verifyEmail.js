@@ -18,7 +18,7 @@ const verifyEmail = async (req, res) => {
             verified_ID.OTP_expire = null,
             verified_ID.isVerified = true,
             verified_ID.save()
-        res.status(200).send({ error: "Verified Successfull" })
+        res.status(200).send({ error: "Verified! Registration Successfull" })
     } catch (error) {
         return res.status(500).send({ error: "Server Error" })
     }
