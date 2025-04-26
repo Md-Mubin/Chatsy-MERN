@@ -9,16 +9,16 @@ const register = async (req, res) => {
     const { name, email, pass } = req.body
 
     try {
-        if (!name) return res.status(400).send("Name Required")
+        if (!name) return res.status(400).send({ error: "Name Required" })
 
-        if (!email) return res.status(400).send("Email Required")
+        if (!email) return res.status(400).send({ error: "Email Required" })
 
-        if (!emailValid(email)) return res.status(400).send("Email is not valid")
+        if (!emailValid(email)) return res.status(400).send({ error: "Email is not valid" })
 
         const existUser = await userSchema.findOne({ email })
-        if (existUser) return res.status(400).send("User Already Exists")
+        if (existUser) return res.status(400).send({ error: "User Already Exists" })
 
-        if (!pass) return res.status(400).send("Password Required")
+        if (!pass) return res.status(400).send({ error: "Password Required" })
 
         if (passValid(pass)) return res.status(400).send(passValid(pass))
 
@@ -36,9 +36,9 @@ const register = async (req, res) => {
 
         newUser.save()
 
-        return res.status(200).send("Register Successfull")
+        return res.status(200).send({ msg: "Register Successfull" })
     } catch (error) {
-        return res.status(500).send("Server Error")
+        return res.status(500).send({ error: "Server Error" })
     }
 }
 

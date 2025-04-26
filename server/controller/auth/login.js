@@ -6,17 +6,17 @@ const login = async (req, res) => {
     try {
         const { email, pass } = req.body
 
-        if (!email) return res.status(400).send("Email Required")
+        if (!email) return res.status(400).send({ error: "Email Required" })
 
         const existUser = await userSchema.findOne({ email })
-        if (!existUser) return res.status(400).send("Something Went Wrong")
+        if (!existUser) return res.status(400).send({ error: "Something Went Wrong" })
 
-        if (!pass) return res.status(400).send("Password Required")
+        if (!pass) return res.status(400).send({ error: "Password Required" })
 
         const passCheck = await existUser.isPassValid(pass)
-        if (!passCheck) return res.status(400).send("Something Went Wrong")
+        if (!passCheck) return res.status(400).send({ error: "Something Went Wrong" })
 
-        if (!existUser.isVerified) return res.status(400).send("Something Went Wrong")
+        if (!existUser.isVerified) return res.status(400).send({ error: "Something Went Wrong" })
 
         const loggedUser = existUser.toObject()
 
@@ -33,7 +33,7 @@ const login = async (req, res) => {
 
         return res.status(200).cookie(access_token).send({ msg: "Login Successfull", loggedUser, access_token })
     } catch (error) {
-        return res.status(500).send("Server Error")
+        return res.status(500).send({ error: "Server Error" })
     }
 }
 

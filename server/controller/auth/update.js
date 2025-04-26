@@ -24,7 +24,7 @@ const update = async (req, res) => {
 
         return res.status(200).send({ msg: "Update Successfull" }, existUser)
     } catch (error) {
-        return res.status(500).send("Server Error")
+        return res.status(500).send({ error: "Server Error" })
     }
 }
 

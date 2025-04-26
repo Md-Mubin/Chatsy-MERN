@@ -1,5 +1,6 @@
 const nodeMailer = require("nodemailer")
 
+// sending mail OTP
 const mailOTP = async (name, newUserEmail, subject, htmlBody, generatedOTP) => {
 
     const transPorter = nodeMailer.createTransport({
@@ -19,6 +20,7 @@ const mailOTP = async (name, newUserEmail, subject, htmlBody, generatedOTP) => {
     })
 }
 
+// sending reset password OTP
 const resetPassOTP = async (name, resetPassEmail, subject, htmlBody, generatedString) => {
     const transPorter = nodeMailer.createTransport({
         host: "smtp.gmail.com",
@@ -29,8 +31,6 @@ const resetPassOTP = async (name, resetPassEmail, subject, htmlBody, generatedSt
         }
     })
     
-console.log(generatedString, resetPassEmail)
-
     await transPorter.sendMail({
         from: "'no replay' Md Irfan Rahman Mubin",
         to: resetPassEmail,

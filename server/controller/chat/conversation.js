@@ -8,14 +8,14 @@ const coversation = async (req, res) => {
 
         // if puts login user's email
         if (participentEmail === req.user.email) {
-            return res.status(400).send("Participent email is required")
+            return res.status(400).send({ error: "Participent email is required" })
         }
 
         // collect data of participent
         const participentData = await userSchema.findOne({ email: participentEmail })
 
         if (!participentData) {
-            return res.status(400).send("No User Found")
+            return res.status(400).send({ error: "No User Found" })
         }
 
         // check if the conversation already exists
@@ -34,7 +34,7 @@ const coversation = async (req, res) => {
         })
 
         if (existConvo) {
-            return res.status(400).send("Conversation Already Created")
+            return res.status(400).send({ error: "Conversation Already Created" })
         }
 
         // creating new conversation
@@ -45,9 +45,9 @@ const coversation = async (req, res) => {
 
         conversation.save()
 
-        return res.status(200).send("Conversation Created")
+        return res.status(200).send({ msg: "Conversation Created" })
     } catch (error) {
-        return res.status(500).send("Server Error")
+        return res.status(500).send({ error: "Server Error" })
     }
 }
 

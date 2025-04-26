@@ -8,23 +8,23 @@ const sendMsg = async (req, res) => {
 
         // if there is no reciver ID
         if (!reciverID) {
-            return res.status(400).send("Something went wrong")
+            return res.status(400).send({ error: "Something went wrong" })
         }
 
         // if there is no content
         if (!content) {
-            return res.status(400).send("Something went wrong")
+            return res.status(400).send({ error: "Something went wrong" })
         }
 
         // if there is no conversation ID
         if (!conversationID) {
-            return res.status(400).send("Something went wrong")
+            return res.status(400).send({ error: "Something went wrong" })
         }
 
         const existChat = await chatSchema.findOne({ _id: conversationID })
 
         if (!existChat) {
-            return res.status(400).send("No Conversation Found")
+            return res.status(400).send({ error: "No Conversation Found" })
         }
 
         // create new massage
@@ -42,7 +42,7 @@ const sendMsg = async (req, res) => {
 
         return res.status(200).send(newMsg)
     } catch (error) {
-        return res.status(500).send("Server Error")
+        return res.status(500).send({ error: "Server Error" })
     }
 }
 

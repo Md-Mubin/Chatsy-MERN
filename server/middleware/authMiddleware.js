@@ -7,7 +7,7 @@ const authMiddleware = (req, res, next) => {
         if (token) {
             jwt.verify(token, process.env.SECRET_ACC_TOKEN, function (err, decoded) {
                 if (err) {
-                    return res.status(400).send({ msg: "Bad Request" })
+                    return res.status(400).send({ error: "Bad Request" })
                 }
                 if (decoded.data) {
                     req.user = decoded.data
@@ -15,10 +15,10 @@ const authMiddleware = (req, res, next) => {
                 }
             })
         } else {
-            return res.status(400).send({ msg: "Bad Request" })
+            return res.status(400).send({ error: "Bad Request" })
         }
     } catch (error) {
-        return res.status(500).send("Server Error")
+        return res.status(500).send({ error: "Server Error" })
     }
 }
 
