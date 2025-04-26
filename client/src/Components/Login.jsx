@@ -1,28 +1,68 @@
-import React from 'react'
-import { Link } from 'react-router'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router'
+import { Bounce, ToastContainer } from 'react-toastify'
+import { authoraizations } from '../Services/api'
 
 const Login = () => {
+
+  // navigation
+  const navigate = useNavigate()
+
+  // useState hooks 
+  const [loginForm, setLoginForm] = useState({
+    email: "",
+    pass: ""
+  })
+
+  // handling submit part for registration
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      const res = await authoraizations.login(loginForm)
+      toast.success(res.response.data.msg)
+      setTimeout(() => {
+        navigate("/chat")
+      }, 1000);
+    } catch (error) {
+      toast.error(error.response.data.error)
+    }
+  }
+
   return (
     <>
+      {/* ============ Toast Container ============ */}
+      <ToastContainer
+        position="top-right"
+        autoClose={800}
+        rtl={false}
+        draggable
+        theme="dark"
+        transition={Bounce}
+      />
+
+      {/* ================== Login Part Start ================== */}
       <section className='bg-[#2b2b37] w-full h-[100dvh] grid tracking-widest'>
         <ul className='bg-[#212121] w-[550px] m-auto p-10'>
           <li className='text-[#fff] text-4xl text-center mb-10'>Please Login</li>
 
           <li>
-            <form className='flex flex-col gap-5'>
+            <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
 
               <div className='input-group'>
                 <input
                   type="email"
                   required
-                  placeholder=' ' />
+                  placeholder=' '
+                  onChange={(e) => setLoginForm((prev) => ({ ...prev, email: e.target.value }))} />
                 <label>Email</label>
               </div>
 
               <div className='input-group'>
                 <input
                   type="password"
-                  placeholder=' ' />
+                  placeholder=' '
+                  onChange={(e) => setLoginForm((prev) => ({ ...prev, pass: e.target.value }))} />
                 <label>Password</label>
               </div>
 

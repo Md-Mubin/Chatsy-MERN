@@ -5,13 +5,17 @@ import { authoraizations } from '../Services/api'
 
 const Register = () => {
 
+    // navigation
     const navigate = useNavigate()
+
+    // useState hooks 
     const [regForm, setRegForm] = useState({
         name: "",
         email: "",
         pass: ""
     })
 
+    // handling submit part for registration
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -28,6 +32,7 @@ const Register = () => {
 
     return (
         <>
+            {/* ============ Toast Container ============ */}
             <ToastContainer
                 position="top-right"
                 autoClose={800}
@@ -36,6 +41,8 @@ const Register = () => {
                 theme="dark"
                 transition={Bounce}
             />
+
+            {/* ================== Registration Part Start ================== */}
             <section className='bg-[#2b2b37] w-full h-[100dvh] grid tracking-widest'>
                 <ul className='bg-[#212121] w-[550px] m-auto p-10'>
                     <li className='text-[#fff] text-4xl text-center mb-10'>Please Register</li>
