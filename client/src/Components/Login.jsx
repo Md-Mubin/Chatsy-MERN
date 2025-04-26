@@ -26,7 +26,10 @@ const Login = () => {
                 <label>Password</label>
               </div>
 
-              <Link to={""} className='text-center text-xl text-[#5dc98a]'>Forget Password?</Link>
+              <div className='register_login'>
+                <Link to={"/"}>Forget Password?</Link>
+                <Link to={"/register"}>Go To Registration</Link>
+              </div>
 
               <button className='submitBtn'>Login</button>
             </form>

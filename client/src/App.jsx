@@ -18,7 +18,6 @@ function App() {
 
           <Route path='/chats' element={<ChatLayout />}>
             <Route index element={<Chats />} />
-            {/* <Route path="/groups" element={<Chats />} /> */}
             <Route path="/chats/profile" element={<Chats />} />
             <Route path='/chats/setting' element={<Chats />} />
           </Route>
