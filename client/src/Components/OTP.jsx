@@ -50,6 +50,7 @@ const OTP = () => {
             {/* ================== OTP Part Start ================== */}
             <section className='bg-[#2b2b37] w-full h-[100dvh] grid tracking-widest'>
                 <form onSubmit={submitOTP} className='m-auto'>
+                    <h2 className='text-4xl font-normal text-[#fff] text-center mb-10'>Check Your Email for OTP</h2>
                     <div className="flex flex-col items-center gap-2">
                         <InputOtp
                             length={4}
@@ -61,7 +62,7 @@ const OTP = () => {
                                     "relative transition-all duration-100 ease-in text-4xl font-bold relative p-16 text-[#fff] bg-[#434352] first:rounded-l-md last:rounded-r-md appearance-none border-0 outline-0 data-[active=true]:ring-4 data-[active=true]:ring-[#434352]"]
                             }} />
 
-                        <button className='submitBtn w-full bg-[#434352]!'>Otp Verified</button>
+                        <button className='submitBtn w-full bg-[#434352]! mt-10!'>Otp Verified</button>
                     </div>
                 </form>
             </section>
