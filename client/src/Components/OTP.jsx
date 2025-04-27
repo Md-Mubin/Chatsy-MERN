@@ -5,14 +5,19 @@ import { useParams } from 'react-router'
 
 const OTP = () => {
 
+    // getting dynamic email from params 
     const params = useParams().email
+
+    // hooks
     const [otpForm, setOtpForm] = useState("")
 
-    const submitOTP = async () => {
+    // handling submit OTP
+    const submitOTP = async (e) => {
+        e.preventDefault()
         try {
             const sendData = {
-                email : params,
-                OTP : otpForm
+                email: params,
+                OTP: otpForm
             }
             const res = await authoraizations.emailVerify(sendData)
             console.log(res)
