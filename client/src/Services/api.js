@@ -16,5 +16,10 @@ export const authoraizations = {
     login: async (loginData) => {
         const res = await api.post("/auth/login", loginData)
         return res.data
+    },
+
+    emailVerify : async(otpData)=>{
+        const res = await api.post("/auth/emailVarified", otpData)
+        return res.data
     }
 } 
