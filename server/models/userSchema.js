@@ -37,6 +37,11 @@ const userSchmea = new SCHEMA({
         default: false
     },
 
+    otpFailedAttempt :{
+        type : Number,
+        default : 0
+    },
+
     resetPassId :{
         type :String
     },

@@ -54,12 +54,13 @@ const OTP = () => {
                     <div className="flex flex-col items-center gap-2">
                         <InputOtp
                             length={4}
+                            errorMessage 
                             value={otpForm}
                             onValueChange={setOtpForm}
                             classNames={{
                                 segmentWrapper: "flex gap-x-3",
                                 segment: [
-                                    "relative transition-all duration-100 ease-in text-4xl font-bold relative p-16 text-[#fff] bg-[#434352] first:rounded-l-md last:rounded-r-md appearance-none border-0 outline-0 data-[active=true]:ring-4 data-[active=true]:ring-[#434352]"]
+                                    "relative duration-100 text-4xl font-bold relative w-30 h-30 text-[#fff] bg-[#434352] first:rounded-l-xl last:rounded-r-xl data-[active=true]:ring-5 data-[active=true]:ring-[#434352]"]
                             }} />
 
                         <button className='submitBtn w-full bg-[#434352]! mt-10!'>Otp Verified</button>

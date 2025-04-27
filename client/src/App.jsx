@@ -16,7 +16,7 @@ function App() {
           <Route path='/' element={<AuthLayout />}>
             <Route index element={<Login />} />
             <Route path='/register' element={<Register />} />
-            <Route path='/OTP' element={<OTP />} />
+            <Route path='/OTP/:email' element={<OTP />} />
             <Route path='/forget_password' element={<ForgetPass />} />
           </Route>
 
