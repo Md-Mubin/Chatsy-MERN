@@ -27,7 +27,7 @@ const OTP = () => {
             toast.success(res.msg)
 
             setTimeout(() => {
-                
+                navigate("/")
             }, 1500);
         } catch (error) {
             console.log(error)
