@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import { InputOtp } from "@heroui/input-otp"
 import { authoraizations } from '../Services/api'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
+import { Bounce, toast, ToastContainer } from 'react-toastify'
 
 const OTP = () => {
 
     // getting dynamic email from params 
     const params = useParams().email
+
+    // navigation 
+    const navigate = useNavigate()
 
     // hooks
     const [otpForm, setOtpForm] = useState("")
@@ -20,7 +24,11 @@ const OTP = () => {
                 OTP: otpForm
             }
             const res = await authoraizations.emailVerify(sendData)
-            console.log(res)
+            toast.success(res.msg)
+
+            setTimeout(() => {
+                
+            }, 1500);
         } catch (error) {
             console.log(error)
         }
@@ -28,6 +36,17 @@ const OTP = () => {
 
     return (
         <>
+            {/* ============ Toast Container ============ */}
+            <ToastContainer
+                position="top-right"
+                autoClose={800}
+                rtl={false}
+                draggable
+                theme="dark"
+                transition={Bounce}
+            />
+
+            {/* ================== OTP Part Start ================== */}
             <section className='bg-[#2b2b37] w-full h-[100dvh] grid tracking-widest'>
                 <form onSubmit={submitOTP} className='w-[550px] m-auto'>
                     <div className="w-[800px] flex flex-col items-start gap-2">
