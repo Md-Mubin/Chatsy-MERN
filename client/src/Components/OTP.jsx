@@ -23,6 +23,7 @@ const OTP = () => {
                 email: params,
                 OTP: otpForm
             }
+            
             const res = await authoraizations.emailVerify(sendData)
             toast.success(res.msg)
 
@@ -30,7 +31,7 @@ const OTP = () => {
                 navigate("/")
             }, 1500);
         } catch (error) {
-            console.log(error)
+            toast.error(error.response.data.error)
         }
     }
 
