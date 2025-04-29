@@ -17,11 +17,11 @@ const verifyEmail = async (req, res) => {
             // if using wrong otp more than 3 time than the id will block and wont be able to verify 
             const failedAttempt = await userSchema.findOneAndUpdate({ email }, { $inc: { otpFailedAttempt: 1 } }, { new: true })
             if (failedAttempt.otpFailedAttempt === 5) {
+
                 failedAttempt.otpFailedAttempt = null,
                     failedAttempt.OTP = null,
                     failedAttempt.OTP_expire = null,
                     failedAttempt.isVerified = false
-
                 failedAttempt.save()
                 return res.status(400).send({ error: "Blocked! Try Again Letter" })
             }
