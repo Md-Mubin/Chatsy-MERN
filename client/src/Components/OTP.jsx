@@ -60,7 +60,7 @@ const OTP = () => {
                             classNames={{
                                 segmentWrapper: "flex gap-x-3",
                                 segment: [
-                                    "relative duration-100 text-4xl font-bold relative w-30 h-30 text-[#fff] bg-[#434352] first:rounded-l-xl last:rounded-r-xl data-[active=true]:ring-5 data-[active=true]:ring-[#434352]"]
+                                    "relative flex justify-center items-center p-4 duration-100 text-4xl font-bold relative w-30 h-30 text-[#fff] bg-[#434352] first:rounded-l-xl last:rounded-r-xl data-[active=true]:ring-5 data-[active=true]:ring-[#434352]"]
                             }} />
 
                         <button className='submitBtn w-full bg-[#434352]! mt-10!'>Otp Verified</button>

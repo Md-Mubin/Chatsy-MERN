@@ -19,7 +19,7 @@ const Login = () => {
 
     try {
       const res = await authoraizations.login(loginForm)
-      toast.success(res.response.data.msg)
+      toast.success(res.msg)
       setTimeout(() => {
         navigate("/chat")
       }, 1000);
