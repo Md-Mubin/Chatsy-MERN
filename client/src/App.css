@@ -1,7 +1,11 @@
 @import "tailwindcss";
 
 body {
-    @apply bg-[#212121]
+    @apply bg-gradient-to-r from-[#0e0e14] to-[#2b2e36]
+}
+
+@utility container{
+    margin : 0 auto;
 }
 
 /* for inputs design */

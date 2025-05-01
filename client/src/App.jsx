@@ -7,6 +7,7 @@ import ChatLayout from './Layouts/ChatLayout'
 import Chats from './Components/Chats'
 import ForgetPass from './Components/ForgetPass'
 import OTP from './Components/OTP'
+import NoPage from './Components/NoPage'
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
             <Route path="/chats/profile" element={<Chats />} />
             <Route path='/chats/setting' element={<Chats />} />
           </Route>
+          
+          <Route path='*' element={<NoPage/>}/>
         </Routes>
       </BrowserRouter>
     </>
