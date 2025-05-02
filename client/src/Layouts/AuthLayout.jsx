@@ -9,6 +9,8 @@ const AuthLayout = () => {
 
     // getting user data from redux
     const user = useSelector((state) => state.user)
+
+    // useEffect for rendering
     useEffect(() => {
         if (user) {
             navigate("/chats")
