@@ -6,6 +6,8 @@ const ConvoList = () => {
 
     // useState
     const [allChatUser, setAllChatUser] = useState([])
+
+    // logged user data from redux
     const loggedUserData = useSelector((state) => state.user)
 
     // useEffect
