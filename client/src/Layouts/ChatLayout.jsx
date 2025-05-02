@@ -6,8 +6,13 @@ import ConvoList from '../Components/ConvoList'
 
 const ChatLayout = () => {
 
+    // navigation 
     const navigate = useNavigate()
+
+    // getting user data from redux
     const user = useSelector((state) => state.user)
+
+    // useEffect for rendering
     useEffect(() => {
         if (!user) {
             navigate("/")
@@ -18,7 +23,7 @@ const ChatLayout = () => {
         <>
             <div className='bg-gradient-to-br from-[#191921] to-[#22252c] w-full h-[100dvh] flex'>
                 <Navbar />
-                <ConvoList/>
+                <ConvoList />
                 <Outlet />
             </div>
         </>
