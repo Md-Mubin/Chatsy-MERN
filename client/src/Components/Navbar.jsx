@@ -1,25 +1,26 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 const Navbar = () => {
   return (
     <>
       <nav className='w-[100px] h-[100dvh] bg-transparent border-r-2 border-[#515257]'>
         <ul className='flex flex-col justify-center items-center h-full gap-16'>
-          <li className='text-[#60b6aa]'>
+          <Link to={"/chats"} className='text-[#60b6aa]'>
             Chats
-          </li>
+          </Link>
 
-          <li>
+          <Link to={""}>
             Group
-          </li>
+          </Link>
 
-          <li>
+          <Link to={""}>
             Settings
-          </li>
+          </Link>
 
-          <li>
+          <Link to={""}>
             Profile
-          </li>
+          </Link>
         </ul>
       </nav>
     </>
