@@ -30,7 +30,7 @@ const ConvoList = () => {
     return (
         <>
             <section className='w-[400px]'>
-                <div>{allChatUser.name}</div>
+                <div>{allChatUser?.name}</div>
             </section>
         </>
     )
