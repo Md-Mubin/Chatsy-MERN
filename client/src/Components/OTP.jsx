@@ -19,12 +19,12 @@ const OTP = () => {
     const submitOTP = async (e) => {
         e.preventDefault()
         try {
-            const sendData = {
-                email: params,
-                OTP: otpForm
-            }
+            // const sendData = {
+            //     email: params,
+            //     OTP: otpForm
+            // }
 
-            const res = await authoraizations.emailVerify(sendData)
+            const res = await authoraizations.emailVerify(params, otpForm)
             toast.success(res.msg)
 
             setTimeout(() => {

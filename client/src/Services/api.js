@@ -17,12 +17,16 @@ export const authoraizations = {
     // for login
     login: async (loginData) => {
         const res = await api.post("/auth/login", loginData)
+        if(res.data.access_token){
+            localStorage.setItem("token", res.data.access_token)
+            localStorage.setItem("loggedUser", JSON.stringify(res.data.loggedUser))
+        }
         return res.data
     },
 
     // for otp to verify email
-    emailVerify : async(otpData)=>{
-        const res = await api.post("/auth/emailVarified", otpData)
+    emailVerify : async(email , OTP)=>{
+        const res = await api.post("/auth/emailVarified", {email , OTP})
         return res.data
     }
 } 

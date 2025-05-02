@@ -2,8 +2,13 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { Bounce, toast, ToastContainer } from 'react-toastify'
 import { authoraizations } from '../Services/api'
+import { useDispatch } from 'react-redux'
+import { loggedUser } from '../Store/Slices/authSlice'
 
 const Login = () => {
+
+  // dispatch
+  const dispatch = useDispatch()
 
   // navigation
   const navigate = useNavigate()
@@ -20,8 +25,9 @@ const Login = () => {
     try {
       const res = await authoraizations.login(loginForm)
       toast.success(res.msg)
+      dispatch(loggedUser(res.loggedUser))
       setTimeout(() => {
-        navigate("/chat")
+        navigate("/chats")
       }, 1000);
     } catch (error) {
       toast.error(error.response.data.error)

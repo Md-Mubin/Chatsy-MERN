@@ -23,7 +23,7 @@ const Register = () => {
             const res = await authoraizations.registration(regForm)
             toast.success(res.msg)
             setTimeout(() => {
-                navigate(`/OTP/${regForm.email}`)
+                navigate(`/OTP/${regForm.email}`) 
             }, 2000);
         } catch (error) {
             toast.error(error.response.data.error)
