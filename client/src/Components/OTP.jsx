@@ -27,9 +27,10 @@ const OTP = () => {
             const res = await authoraizations.emailVerify(params, otpForm)
             toast.success(res.msg)
 
-            setTimeout(() => {
+            setTimeout(() => { // for delaying
                 navigate("/")
             }, 1500);
+
         } catch (error) {
             toast.error(error.response.data.error)
         }
