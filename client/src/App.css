@@ -114,3 +114,12 @@ nav ul li a, nav ul li button {
         filter: drop-shadow(2px 2px 3px #88d4ca);
     }
 }
+
+/* conversation list */
+.convoListSec{
+    @apply w-[400px] mt-2 tracking-widest
+}
+
+.convoListSec ul li {
+    @apply font-medium text-xl text-[#60b6aa]
+}
