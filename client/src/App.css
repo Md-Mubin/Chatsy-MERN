@@ -121,5 +121,18 @@ nav ul li a, nav ul li button {
 }
 
 .convoListSec ul li {
-    @apply font-medium text-xl text-[#60b6aa] p-4 
+    @apply font-medium text-xl text-[#60b6aa] p-4;
+    background-image: linear-gradient(#88d4ca);
+    background-repeat: no-repeat;
+    background-size: 0% 1%;
+    background-position: right bottom;
+    cursor: pointer;
+    transition: background-size 500ms;
+
+    &:hover{
+        background-size: 100% 1%;
+        background-position: left bottom;
+        color: #88d4ca;
+        filter: drop-shadow(2px 2px 3px #88d4ca);
+    }
 }
