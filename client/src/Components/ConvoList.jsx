@@ -19,9 +19,9 @@ const ConvoList = () => {
                     let arr = []
                     chatUsers.forEach((items) => {
                         if (items.creator._id === loggedUserData._id) {
-                            arr(items.participent)
+                            arr.push(items.participent)
                         }else if(items.participent._id === loggedUserData._id){
-                            arr(items.creator)
+                            arr.push(items.creator)
                         }
                     });
                 } catch (error) {
