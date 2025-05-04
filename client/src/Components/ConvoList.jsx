@@ -24,6 +24,8 @@ const ConvoList = () => {
                             arr.push(items.creator)
                         }
                     });
+
+                    setAllChatUser(arr)
                 } catch (error) {
                     console.log(error)
                 }
