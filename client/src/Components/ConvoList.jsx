@@ -40,6 +40,11 @@ const ConvoList = () => {
                     {
                         allChatUser.length === 0 
                         ? <li>No Conversation Found</li>
+                        : allChatUser.map((datas)=>(
+                            <li key={datas._id}>
+                                {datas.name}
+                            </li>
+                        ))
                     }
                 </ul>
             </section>
