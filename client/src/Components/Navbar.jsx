@@ -1,26 +1,39 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { BsChatDots } from "react-icons/bs"
+import { AiOutlineLogout } from "react-icons/ai";
+import { IoSettingsOutline } from "react-icons/io5";
+import { PiUserFocus  } from "react-icons/pi";
 
 const Navbar = () => {
+
   return (
     <>
-      <nav className='w-[100px] h-[100dvh] bg-transparent border-r-2 border-[#515257]'>
-        <ul className='flex flex-col justify-center items-center h-full gap-16'>
-          <Link to={"/chats"} className='text-[#60b6aa]'>
-            Chats
-          </Link>
+      <nav className='h-[100dvh] bg-transparent border-r-2 border-[#515257]'>
+        <ul className='px-4'>
+          <li>
+            <Link to={"/chats"} className='group'>
+              <BsChatDots className='group-hover:translate-y-[-10px] duration-200' />
+            </Link>
+          </li>
 
-          <Link to={""}>
-            Group
-          </Link>
+          <li>
+            <Link to={"/chats/setting"} className='group'>
+              <IoSettingsOutline  className='group-hover:translate-y-[-10px] duration-200'/>
+            </Link>
+          </li>
 
-          <Link to={""}>
-            Settings
-          </Link>
+          <li>
+            <Link to={"/chats/profile"} className='group'>
+            <PiUserFocus  className='group-hover:translate-y-[-10px] duration-200'/>
+            </Link>
+          </li>
 
-          <Link to={""}>
-            Profile
-          </Link>
+          <li>
+            <button className='group cursor-pointer'>
+              <AiOutlineLogout className='group-hover:translate-y-[-10px] duration-200 -rotate-90' />
+            </button>
+          </li>
         </ul>
       </nav>
     </>

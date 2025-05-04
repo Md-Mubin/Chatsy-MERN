@@ -63,7 +63,7 @@ body {
 
 .register_login a{
     @apply p-1 text-lg text-[#5dc98a] inline-block relative;
-    background-image: linear-gradient(to right, #28e98c, #28e98c);
+    background-image: linear-gradient(#28e98c);
     background-size: 0% 2px;
     background-position: right bottom;
     background-repeat: no-repeat;
@@ -89,5 +89,28 @@ body {
         background-size: 100% 100%;
         background-position-x: left;
         color: #000;
+    }
+}
+
+/* nav items */
+
+nav ul li{
+    @apply mt-8
+}
+
+nav ul li a, nav ul li button {
+    @apply block p-8 text-[#60b6aa] text-4xl duration-200 ;
+    background-image: linear-gradient(#88d4ca);
+    background-repeat: no-repeat;
+    background-size: 0% 1%;
+    background-position: right bottom;
+    cursor: pointer;
+    transition: background-size 500ms;
+
+    &:hover{
+        background-size: 100% 1%;
+        background-position: left bottom;
+        color: #88d4ca;
+        filter: drop-shadow(2px 2px 3px #88d4ca);
     }
 }

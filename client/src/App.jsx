@@ -8,6 +8,9 @@ import Chats from './Components/Chats'
 import ForgetPass from './Components/ForgetPass'
 import OTP from './Components/OTP'
 import NoPage from './Components/NoPage'
+import ChatPages from './Pages/ChatPages'
+import Profile from './Components/Profile'
+import Settings from './Components/Settings'
 
 function App() {
   return (
@@ -22,9 +25,9 @@ function App() {
           </Route>
 
           <Route path='/chats' element={<ChatLayout />}>
-            <Route index element={<Chats />} />
-            <Route path="/chats/profile" element={<Chats />} />
-            <Route path='/chats/setting' element={<Chats />} />
+            <Route index element={<ChatPages />} />
+            <Route path='/chats/setting' element={<Settings />} />
+            <Route path="/chats/profile" element={<Profile />} />
           </Route>
           
           <Route path='*' element={<NoPage/>}/>
