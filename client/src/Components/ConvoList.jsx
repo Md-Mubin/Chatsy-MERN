@@ -16,6 +16,7 @@ const ConvoList = () => {
             async () => {
                 try {
                     const chatUsers = await chattings.convoList()
+                    let arr = []
                     chatUsers.forEach((items) => {
                         if (items.creator._id === loggedUserData._id) {
                             setAllChatUser(items.participent)
