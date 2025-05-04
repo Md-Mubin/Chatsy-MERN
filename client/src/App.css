@@ -121,5 +121,5 @@ nav ul li a, nav ul li button {
 }
 
 .convoListSec ul li {
-    @apply font-medium text-xl text-[#60b6aa]
+    @apply font-medium text-xl text-[#60b6aa] p-4 
 }
