@@ -36,7 +36,12 @@ const ConvoList = () => {
     return (
         <>
             <section className='w-[400px]'>
-                <div>{allChatUser?.name}</div>
+                <ul>
+                    {
+                        allChatUser.length === 0 
+                        ? <li>No Conversation Found</li>
+                    }
+                </ul>
             </section>
         </>
     )
