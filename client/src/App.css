@@ -120,11 +120,11 @@ nav ul li a, nav ul li button {
     @apply w-[400px] pt-2 tracking-widest border-r-2 border-[#515257]
 }
 
-.convoListSec ul li {
-    @apply font-medium text-xl text-[#60b6aa] p-4;
+.convoListSec ul {
+    @apply font-medium text-xl text-[#60b6aa] p-4 mt-4;
     background-image: linear-gradient(#88d4ca);
     background-repeat: no-repeat;
-    background-size: 0% 1%;
+    background-size: 0% 2%;
     background-position: right bottom;
     cursor: pointer;
     transition: background-size 800ms;
