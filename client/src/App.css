@@ -99,7 +99,7 @@ nav ul li {
 }
 
 nav ul li a, nav ul li button {
-    @apply block p-8 text-[#60b6aa] text-4xl duration-200;
+    @apply block p-8 text-[#7f7f87] text-4xl duration-200;
     background-image: linear-gradient(#88d4ca);
     background-repeat: no-repeat;
     background-size: 0% 1%;
@@ -111,7 +111,6 @@ nav ul li a, nav ul li button {
         background-size: 100% 1%;
         background-position: left bottom;
         color: #88d4ca;
-        filter: drop-shadow(2px 2px 3px #88d4ca);
     }
 }
 
@@ -121,18 +120,19 @@ nav ul li a, nav ul li button {
 }
 
 .convoListSec ul {
-    @apply font-medium text-xl text-[#60b6aa] p-4 mt-4;
+    @apply font-medium text-xl text-[#7f7f87] p-4 mt-4;
     background-image: linear-gradient(#88d4ca);
     background-repeat: no-repeat;
     background-size: 0% 2%;
     background-position: right bottom;
     cursor: pointer;
-    transition: background-size 800ms;
-
+    transition: background-size 800ms, transform 400ms;
+    
     &:hover {
         background-size: 100% 2%;
         background-position: left bottom;
         color: #88d4ca;
-        transition: background-size 500ms;
+        transition: background-size 500ms, transform 400ms;
+        transform: translateY(-4px);
     }
 }

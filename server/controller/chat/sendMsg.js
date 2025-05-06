@@ -21,7 +21,7 @@ const sendMsg = async (req, res) => {
             return res.status(400).send({ error: "Something went wrong" })
         }
 
-        const existChat = await chatSchema.findOne({ _id: conversationID })
+        const existChat = await convoSchema.findOne({ _id: conversationID })
 
         if (!existChat) {
             return res.status(400).send({ error: "No Conversation Found" })

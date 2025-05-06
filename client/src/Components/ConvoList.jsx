@@ -19,9 +19,15 @@ const ConvoList = () => {
                     let arr = []
                     chatUsers.forEach((items) => {
                         if (items.creator._id === loggedUserData._id) {
-                            arr.push(items.participent)
+                            arr.push({
+                                user : items.participent,
+                                lastMsg : items.lastMsg
+                            })
                         } else if (items.participent._id === loggedUserData._id) {
-                            arr.push(items.creator)
+                            arr.push({
+                                user : items.creator,
+                                lastMsg : items.lastMsg
+                            })
                         }
                     });
 
@@ -38,18 +44,22 @@ const ConvoList = () => {
             <section className='convoListSec'>
                     {
                         allChatUser.length === 0
-                            ? <p>No Conversation Found</p>
+                            ? <p className='text-center'>No Conversation Found</p>
                             : allChatUser.map((datas) => (
-                                <ul key={datas._id} className='flex items-center gap-5 mx-4'>
-                                    <li className='w-[50px] h-[50px] rounded-full bg-[#ffffff17] flex justify-center items-center'>
+                                <ul key={datas.user._id} className='flex items-center gap-5 mx-4'>
+                                    <li className='w-[60px] h-[60px] rounded-full bg-[#ffffff17] flex justify-center items-center'>
                                         {
                                             datas.avatar 
-                                            ? <img src={datas.avatar} alt="" />
-                                            : <div>{datas.name.split("")[0]}</div>
+                                            ? <img src={datas.user.avatar} alt="user image" />
+                                            : datas.user.name.split("")[0]
                                         }
                                     </li>
-                                    <li>
-                                        {datas.name}
+                                    <li className='flex flex-col gap-1'>
+                                        {datas.user.name}
+                                        <p className='text-sm opacity-60'>
+                                            {datas.lastMsg && datas.lastMsg.sender === loggedUserData._id && "You : "}
+                                            {datas.lastMsg && datas.lastMsg.content}
+                                        </p>
                                     </li>
                                 </ul>
                             ))
