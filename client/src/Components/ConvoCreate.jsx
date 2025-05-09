@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { chattings } from '../Services/api'
 import { useDispatch } from 'react-redux'
 import { getConvoList } from '../Store/Slices/convoListSlice'
-import { Bounce, ToastContainer } from 'react-toastify'
+import { Bounce, toast, ToastContainer } from 'react-toastify'
 
 const ConvoCreate = () => {
 
@@ -12,13 +12,19 @@ const ConvoCreate = () => {
     const handleAddEmail = async (e) => {
         e.preventDefault()
 
-        const res = await chattings.createConvo(addEmail)
-        setTimeout(() => {
-            dispatch(getConvoList())
-        }, 500);
+        try {
+            const res = await chattings.createConvo(addEmail)
 
-        if (res.msg === "Conversation Created") {
-            setAddEmail("")
+            setTimeout(() => {
+                dispatch(getConvoList())
+            }, 500);
+
+            if (res.msg) {
+                toast.success(res.msg)
+                setAddEmail("")
+            }
+        } catch (error) {
+            toast.error(error.response.data.error)
         }
     }
 
