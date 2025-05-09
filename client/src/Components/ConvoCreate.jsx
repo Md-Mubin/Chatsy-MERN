@@ -8,21 +8,32 @@ const ConvoCreate = () => {
     const [addEmail, setAddEmail] = useState("")
     const dispatch = useDispatch()
 
-    const handleAddEmail = async (e)=>{
+    const handleAddEmail = async (e) => {
         e.preventDefault()
 
         const res = await chattings.createConvo(addEmail)
         setTimeout(() => {
             dispatch(getConvoList())
         }, 500);
-        
-        if(res.msg === "Conversation Created"){
+
+        if (res.msg === "Conversation Created") {
             setAddEmail("")
         }
     }
 
     return (
         <>
+            {/* ============ Toast Container ============ */}
+            <ToastContainer
+                position="top-right"
+                autoClose={800}
+                rtl={false}
+                draggable
+                theme="dark"
+                transition={Bounce}
+            />
+
+            {/* ================== Convo Create Part ================== */}
             <section>
                 <ul>
                     <li>
@@ -35,7 +46,7 @@ const ConvoCreate = () => {
                                 type="email"
                                 placeholder='@email'
                                 value={addEmail}
-                                onChange={(e)=>setAddEmail(e.target.value)}
+                                onChange={(e) => setAddEmail(e.target.value)}
                                 className='w-full py-3 outline-0 border-b-2 border-[#7f7f87] focus-within:border-[#88d4ca] text-[#88d4ca]'
                             />
                             <button className='bg-[#7f7f87] rounded-xl hover:bg-[#88d4ca] active:scale-90 px-6 py-2 text-xl duration-300 cursor-pointer '>Add</button>
