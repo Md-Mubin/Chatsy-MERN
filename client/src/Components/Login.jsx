@@ -25,8 +25,8 @@ const Login = () => {
     try {
       const res = await authoraizations.login(loginForm)
       toast.success(res.msg)
-      dispatch(loggedUser(res.loggedUser))
       setTimeout(() => {
+        dispatch(loggedUser(res.loggedUser))
         navigate("/chats")
       }, 1000);
     } catch (error) {
