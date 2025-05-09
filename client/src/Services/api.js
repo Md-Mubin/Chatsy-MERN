@@ -50,5 +50,10 @@ export const chattings = {
     convoList: async () => {
         const res = await api.get("/chat/convoList")
         return res.data
+    },
+
+    createConvo : async(participentEmail)=>{
+        const res = await api.post("/chat/createConvo", {participentEmail})
+        return res.data
     }
 }

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux"
 const ChatLayout = () => {
 
     // getting user data from redux
-    const user = useSelector((state) => state.user)
+    const user = useSelector((state) => state.loggedUserData.user)
 
     // for rendering
     if (!user) {

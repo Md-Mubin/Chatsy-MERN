@@ -116,7 +116,7 @@ nav ul li a, nav ul li button {
 
 /* conversation list */
 .convoListSec {
-    @apply w-[400px] pt-2 tracking-widest border-r-2 border-[#515257]
+    @apply w-[400px] pt-2 tracking-widest 
 }
 
 .convoListSec ul {
