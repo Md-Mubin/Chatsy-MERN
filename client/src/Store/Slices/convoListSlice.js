@@ -20,18 +20,11 @@ const convoListSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(getConvoList.pending, (state) => {
-                state.loading = true;
-            })
             .addCase(getConvoList.fulfilled, (state, action) => {
                 state.loading = false;
                 state.chatList = action.payload
             })
-            .addCase(getConvoList.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.payload;
-            });
-    },
+    }
 });
 
 export default convoListSlice.reducer;
