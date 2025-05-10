@@ -8,7 +8,10 @@ import { useDispatch } from 'react-redux';
 
 const Navbar = () => {
 
+  // navigate
   const navigate = useNavigate()
+
+  // dispatch
   const dispatch = useDispatch()
 
   const handleLogout = () => {
