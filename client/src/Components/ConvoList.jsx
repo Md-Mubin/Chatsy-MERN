@@ -69,7 +69,7 @@ const ConvoList = () => {
             <section className='convoListSec'>
                 {
                     allChatUser.length === 0
-                        ? <p className='text-center'>No Conversation Found</p>
+                        ? <p className='text-center text-[#88d4ca]'>No Conversation Found</p>
                         : allChatUser.map((datas) => (
                             <ul key={datas.user._id} className='flex items-center gap-5 relative z-10'>
                                 <li className='w-[60px] h-[60px] rounded-full bg-[#ffffff17] flex justify-center items-center'>
