@@ -46,7 +46,7 @@ const ConvoCreate = () => {
             />
 
             {/* ================== Convo Create Part ================== */}
-            <section>
+            <section className='border-b-2 border-[#515257]'>
                 <ul>
                     <li>
                         <h1 className='font-normal text-5xl text-[#88d4ca]'>Chatsy</h1>
@@ -60,7 +60,7 @@ const ConvoCreate = () => {
                         </button>
                     </li>
 
-                    <li className='mt-5'>
+                    <li className={`duration-200 overflow-hidden ${show ? "pt-4 pb-8 opacity-100" : "h-0 opacity-0"}`}>
                         <form onSubmit={handleAddEmail} className='flex items-end gap-4'>
                             <input
                                 type="email"
