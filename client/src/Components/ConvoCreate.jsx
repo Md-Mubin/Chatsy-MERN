@@ -6,9 +6,14 @@ import { Bounce, toast, ToastContainer } from 'react-toastify'
 
 const ConvoCreate = () => {
 
+    // dispatch
+    const dispatch = useDispatch() 
+     
+    // hooks
+    const [show, setShow] = useState(false)
     const [addEmail, setAddEmail] = useState("")
-    const dispatch = useDispatch()
 
+    // adding user with email
     const handleAddEmail = async (e) => {
         e.preventDefault()
 
@@ -45,6 +50,14 @@ const ConvoCreate = () => {
                 <ul>
                     <li>
                         <h1 className='font-normal text-5xl text-[#88d4ca]'>Chatsy</h1>
+                    </li>
+
+                    <li className='mt-5 text-end text-4xl'>
+                        <button onClick={()=>setShow(!show)} className='cursor-pointer text-[#515257] hover:text-[#88d4ca] p-2 '>
+                            {
+                                show ? <PiUserCircleMinusLight /> : <PiUserCirclePlusLight /> 
+                            }
+                        </button>
                     </li>
 
                     <li className='mt-5'>
