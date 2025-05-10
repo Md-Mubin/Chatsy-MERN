@@ -6,7 +6,7 @@ router.use(process.env.API_URL, apiRouter)
 
 router.use((req, res) => {
 
-    return res.status(400).semd({ error: "No Page Found" })
+    return res.status(400).send({ error: "No Page Found" })
 })
 
 module.exports = router

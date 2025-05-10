@@ -52,8 +52,15 @@ export const chattings = {
         return res.data
     },
 
+    // create conversation 
     createConvo : async(participentEmail)=>{
         const res = await api.post("/chat/createConvo", {participentEmail})
+        return res.data
+    },
+
+    // delete conversation
+    deleteConvo : async (deletChatByUserId)=>{
+        const res = await api.post("/chat/deleteConvo", {deletChatByUserId})
         return res.data
     }
 }
