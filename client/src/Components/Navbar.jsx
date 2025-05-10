@@ -1,9 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { BsChatDots } from "react-icons/bs"
 import { AiOutlineLogout } from "react-icons/ai";
 import { IoSettingsOutline } from "react-icons/io5";
 import { PiUserFocus  } from "react-icons/pi";
+import { useDispatch } from 'react-redux';
 
 const Navbar = () => {
 

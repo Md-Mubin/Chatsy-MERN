@@ -9,8 +9,8 @@ export const authSlice = createSlice({
     loggedUser: (state, action) => {
       state.user = action.payload
     },
-    logOutUser: () => {
-      
+    logOutUser: (state) => {
+      state.user = null
     }
   },
 })
