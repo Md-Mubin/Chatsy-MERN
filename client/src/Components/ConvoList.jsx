@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getConvoList } from '../Store/Slices/convoListSlice'
 import { PiDotsThreeOutlineVerticalThin } from "react-icons/pi";
 import { chattings } from '../Services/api';
+import { Bounce, toast, ToastContainer } from 'react-toastify';
 
 const ConvoList = () => {
 
@@ -43,14 +44,28 @@ const ConvoList = () => {
     }, [allChatLists, loggedUserData])
 
     // handling deleting chat user
-    const handleDeleteChat = async (deleteChatID)=>{
+    const handleDeleteChat = async (deleteChatID) => {
 
-        const res = await chattings.deleteConvo(deleteChatID)
-        console.log(res)
+        try {
+            const res = await chattings.deleteConvo(deleteChatID)
+            toast.success(res.msg)
+        } catch (error) {
+            toast.error(error.response.data.error)
+        }
     }
 
     return (
         <>
+            {/* ============ Toast Container ============ */}
+            <ToastContainer
+                position="top-right"
+                autoClose={800}
+                rtl={false}
+                theme="dark"
+                transition={Bounce}
+            />
+
+            {/* ================== Conversation List Part ================== */}
             <section className='convoListSec'>
                 {
                     allChatUser.length === 0
@@ -83,7 +98,7 @@ const ConvoList = () => {
                                 {
                                     selectedUserId === datas.user._id && (
                                         <li className={`absolute right-14 top-6 w-[80px] flex flex-col gap-1 z-50`}>
-                                            <button onClick={()=>handleDeleteChat(datas.user._id)} className='cursor-pointer text-sm text-[#7f7f87] border border-[#7f7f87] hover:border-[#88d4ca] hover:text-[#88d4ca]'>Delete</button>
+                                            <button onClick={() => handleDeleteChat(datas.user._id)} className='cursor-pointer text-sm text-[#7f7f87] border border-[#7f7f87] hover:border-[#88d4ca] hover:text-[#88d4ca]'>Delete</button>
                                             <button className='cursor-pointer text-sm text-[#7f7f87] border border-[#7f7f87] hover:border-[#88d4ca] hover:text-[#88d4ca]'>Block</button>
                                         </li>
                                     )

@@ -41,7 +41,6 @@ const ConvoCreate = () => {
                 position="top-right"
                 autoClose={800}
                 rtl={false}
-                draggable
                 theme="dark"
                 transition={Bounce}
             />

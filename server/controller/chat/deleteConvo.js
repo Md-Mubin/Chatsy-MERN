@@ -18,7 +18,7 @@ const deleteConvo = async (req, res) => {
         return res.status(400).send({error : "Try Again"})
     }
 
-    return res.status(200).send({msg : "Chat Delete Successful"})
+    res.status(200).send({msg : "Chat Delete Successful"})
 }
 
 module.exports = deleteConvo
