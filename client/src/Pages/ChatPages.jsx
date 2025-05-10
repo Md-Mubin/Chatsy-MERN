@@ -1,4 +1,3 @@
-import React from 'react'
 import ConvoList from '../Components/ConvoList'
 import Chats from '../Components/Chats'
 import ConvoCreate from '../Components/ConvoCreate'

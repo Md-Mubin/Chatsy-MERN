@@ -7,6 +7,18 @@ import { PiUserFocus  } from "react-icons/pi";
 
 const Navbar = () => {
 
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const handleLogout = () => {
+
+    dispatch(logOutUser())
+
+    localStorage.removeItem("loggedUser")
+    localStorage.removeItem("token")
+    navigate("/")
+  }
+
   return (
     <>
       <nav className='h-[100dvh] bg-transparent border-r-2 border-[#515257]'>
