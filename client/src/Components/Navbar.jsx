@@ -43,7 +43,7 @@ const Navbar = () => {
           </li>
 
           <li>
-            <button className='group cursor-pointer'>
+            <button onClick={handleLogout} className='group cursor-pointer'>
               <AiOutlineLogout className='group-hover:translate-y-[-10px] duration-200 -rotate-90' />
             </button>
           </li>
