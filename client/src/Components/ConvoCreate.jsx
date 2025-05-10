@@ -8,8 +8,8 @@ import { PiUserCircleMinusLight, PiUserCirclePlusLight } from 'react-icons/pi'
 const ConvoCreate = () => {
 
     // dispatch
-    const dispatch = useDispatch() 
-     
+    const dispatch = useDispatch()
+
     // hooks
     const [show, setShow] = useState(false)
     const [addEmail, setAddEmail] = useState("")
@@ -20,15 +20,14 @@ const ConvoCreate = () => {
 
         try {
             const res = await chattings.createConvo(addEmail)
-
+            
+            toast.success(res.msg)
+            
             setTimeout(() => {
                 dispatch(getConvoList())
             }, 500);
 
-            if (res.msg) {
-                toast.success(res.msg)
-                setAddEmail("")
-            }
+            setAddEmail("")
         } catch (error) {
             toast.error(error.response.data.error)
         }
@@ -53,9 +52,9 @@ const ConvoCreate = () => {
                     </li>
 
                     <li className='mt-5 text-end text-4xl'>
-                        <button onClick={()=>setShow(!show)} className='cursor-pointer text-[#515257] hover:text-[#88d4ca] p-2 '>
+                        <button onClick={() => setShow(!show)} className='cursor-pointer text-[#515257] hover:text-[#88d4ca] p-2 '>
                             {
-                                show ? <PiUserCircleMinusLight /> : <PiUserCirclePlusLight /> 
+                                show ? <PiUserCircleMinusLight /> : <PiUserCirclePlusLight />
                             }
                         </button>
                     </li>
