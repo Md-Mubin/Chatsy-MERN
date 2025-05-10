@@ -1,12 +1,12 @@
 const express = require("express")
-const coversation = require("../../controller/chat/conversation")
 const authMiddleware = require("../../middleware/authMiddleware")
 const convoList = require("../../controller/chat/convoList")
 const sendMsg = require("../../controller/chat/sendMsg")
 const getMsg = require("../../controller/chat/getMsg")
+const createConvo = require("../../controller/chat/createConvo")
 const chatRouter = express.Router()
 
-chatRouter.post("/createConvo",authMiddleware, coversation)
+chatRouter.post("/createConvo",authMiddleware, createConvo)
 chatRouter.get("/convoList",authMiddleware, convoList)
 
 chatRouter.post("/sendMsg", authMiddleware, sendMsg)

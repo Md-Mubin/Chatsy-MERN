@@ -1,7 +1,7 @@
 const convoSchema = require("../../models/convoSchema")
 const userSchema = require("../../models/userSchema")
 
-const coversation = async (req, res) => {
+const createConvo = async (req, res) => {
 
     try {
         const { participentEmail } = req.body
@@ -51,4 +51,4 @@ const coversation = async (req, res) => {
     }
 }
 
-module.exports = coversation
+module.exports = createConvo
