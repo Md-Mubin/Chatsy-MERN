@@ -14,6 +14,7 @@ const Navbar = () => {
   // dispatch
   const dispatch = useDispatch()
 
+  // logout button handle
   const handleLogout = () => {
 
     dispatch(logOutUser())
