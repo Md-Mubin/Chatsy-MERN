@@ -45,7 +45,7 @@ const createConvo = async (req, res) => {
 
         conversation.save()
 
-        return res.status(200).send({ msg: "Conversation Created" })
+        res.status(200).send({ msg: "Conversation Created" })
     } catch (error) {
         return res.status(500).send({ error: "Server Error" })
     }

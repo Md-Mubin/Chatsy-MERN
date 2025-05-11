@@ -21,7 +21,7 @@ const ConvoCreate = () => {
         try {
             const res = await chattings.createConvo(addEmail)
             
-            // toast.success(res.msg)
+            toast.success(res.msg)
 
             setTimeout(() => {
                 dispatch(getConvoList())

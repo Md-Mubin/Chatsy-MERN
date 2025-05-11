@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { chattings } from '../../Services/api';
 
-// Async thunk to create or get a conversation
+// Async thunk to get conversation
 export const getConvoList = createAsyncThunk(
     'conversations/getList',
     async () => {
@@ -13,15 +13,12 @@ export const getConvoList = createAsyncThunk(
 const convoListSlice = createSlice({
     name: 'conversations',
     initialState: {
-        chatList: [],
-        loading: false,
-        error: null,
+        chatList: []
     },
     reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(getConvoList.fulfilled, (state, action) => {
-                state.loading = false;
                 state.chatList = action.payload
             })
     }
