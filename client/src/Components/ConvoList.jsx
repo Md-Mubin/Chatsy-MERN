@@ -18,9 +18,12 @@ const ConvoList = () => {
     const loggedUserData = useSelector((state) => state.loggedUserData.user)
     const allChatLists = useSelector((state) => state.chatListsData.chatList)
 
+    useEffect(()=>{
+        dispatch(getConvoList())
+    },[allChatLists])
+
     // useEffect
     useEffect(() => {
-        dispatch(getConvoList())
 
         try {
             const arr = allChatLists.map((items) => {
