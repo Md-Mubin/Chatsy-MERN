@@ -5,10 +5,11 @@ import { useSelector } from "react-redux"
 
 const ChatLayout = () => {
 
-    // getting user data from redux
+    
+    // data from redux
     const user = useSelector((state) => state.loggedUserData.user)
 
-    // for rendering
+    // checking
     if (!user) {
         return <Navigate to={"/"}/>
     }
