@@ -6,16 +6,21 @@ export const getConvoList = createAsyncThunk(
     'conversations/getList',
     async () => {
         const response = await chattings.convoList();
-        return response; 
+        return response;
     }
-);
+)
 
 const convoListSlice = createSlice({
     name: 'conversations',
     initialState: {
-        chatList: []
+        chatList: null,
+        selectedChat: null
     },
-    reducers: {},
+    reducers: {
+        selectedChat: (state, action) => {
+            state.selectedChat = action.payload
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getConvoList.fulfilled, (state, action) => {
@@ -24,4 +29,5 @@ const convoListSlice = createSlice({
     }
 });
 
-export default convoListSlice.reducer;
+export const { selectedChat } = convoListSlice.actions
+export default convoListSlice.reducer

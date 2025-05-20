@@ -4,11 +4,10 @@ const getMsg = async (req, res) => {
 
     try {
         const { conversationID } = req.params
-
         if (!conversationID) {
             return res.status(400).send({ error: "No massage foound" })
         }
-
+        
         const getMassage = await chatSchema.find({ conversations: conversationID })
 
         if (!getMassage) {

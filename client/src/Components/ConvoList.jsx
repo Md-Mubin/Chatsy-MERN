@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getConvoList } from '../Store/Slices/convoListSlice'
+import { getConvoList, selectedChat } from '../Store/Slices/convoListSlice'
 import { PiDotsThreeOutlineVerticalThin } from "react-icons/pi";
 import { chattings } from '../Services/api';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
@@ -18,34 +18,37 @@ const ConvoList = () => {
     const loggedUserData = useSelector((state) => state.loggedUserData.user)
     const allChatLists = useSelector((state) => state.chatListsData.chatList)
 
-    
     // useEffect
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getConvoList())
-    },[allChatLists])
-    
+    }, [])
+
     useEffect(() => {
 
         try {
-            const arr = allChatLists.map((items) => {
-                if (items.creator._id === loggedUserData._id) {
-                    return {
-                        user: items.participent,
-                        lastMsg: items.lastMsg
+            if (allChatLists) {
+                const arr = allChatLists.map((items) => {
+                    if (items.creator._id === loggedUserData._id) {
+                        return {
+                            id: items._id,
+                            user: items.participent,
+                            lastMsg: items.lastMsg
+                        }
+                    } else if (items.participent._id === loggedUserData._id) {
+                        return {
+                            id: items._id,
+                            user: items.creator,
+                            lastMsg: items.lastMsg
+                        }
                     }
-                } else if (items.participent._id === loggedUserData._id) {
-                    return {
-                        user: items.creator,
-                        lastMsg: items.lastMsg
-                    }
-                }
-            })
-            setAllChatUser(arr)
+                })
+                setAllChatUser(arr)
+            }
         } catch (error) {
             console.log(error)
         }
 
-    }, [allChatLists, loggedUserData])
+    }, [allChatLists])
 
     // handling deleting chat user
     const handleDeleteChat = async (deleteChatID) => {
@@ -55,6 +58,16 @@ const ConvoList = () => {
             toast.success(res.msg)
         } catch (error) {
             toast.error(error.response.data.error)
+        }
+    }
+
+    // handling selecting chat
+    const handleSelectChat = async (selectedDatas) => {
+        try {
+            const res = await chattings.getMassage(selectedDatas.id)
+            dispatch(selectedChat({ user: selectedDatas.user, res }))
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -72,10 +85,10 @@ const ConvoList = () => {
             {/* ================== Conversation List Part ================== */}
             <section className='convoListSec'>
                 {
-                    allChatUser.length === 0
+                    allChatUser.length < 1
                         ? <p className='text-center text-[#88d4ca]'>No Conversation Found</p>
                         : allChatUser.map((datas) => (
-                            <ul key={datas.user._id} className='flex items-center gap-5 relative z-10'>
+                            <ul onClick={() => handleSelectChat(datas)} key={datas.user._id} className='flex items-center gap-5 relative z-10'>
                                 <li className='w-[60px] h-[60px] rounded-full bg-[#ffffff17] flex justify-center items-center'>
                                     {
                                         datas.user.avatar

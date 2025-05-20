@@ -9,7 +9,7 @@ const api = axios.create({
 
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem("token")
-    if(token){
+    if (token) {
         config.headers.Authorization = token
     }
     return config
@@ -53,14 +53,20 @@ export const chattings = {
     },
 
     // create conversation 
-    createConvo : async(participentEmail)=>{
-        const res = await api.post("/chat/createConvo", {participentEmail})
+    createConvo: async (participentEmail) => {
+        const res = await api.post("/chat/createConvo", { participentEmail })
+        return res.data
+    },
+
+    // get massages
+    getMassage: async (conversationID) => {
+        const res = await api.get(`/chat/getMsg/${conversationID}`)
         return res.data
     },
 
     // delete conversation
-    deleteConvo : async (deletChatByUserId)=>{
-        const res = await api.post("/chat/deleteConvo", {deletChatByUserId})
+    deleteConvo: async (deletChatByUserId) => {
+        const res = await api.post("/chat/deleteConvo", { deletChatByUserId })
         return res.data
     }
 }
