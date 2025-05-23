@@ -1,4 +1,7 @@
 require("dotenv").config()
+
+const http = require("http")
+const { Server } = require("socket.io")
 const express = require("express")
 const app = express()
 const cors = require("cors")
@@ -7,10 +10,17 @@ const router = require("./router")
 
 app.use(express.json())
 app.use(cors())
+const httpServer = http.createServer(app)
+const io = new Server(httpServer,{
+    cors : "*"
+})
+
+global.io = io
+
 app.use(router)
 
 dbConnect()
 
-app.listen(8000, ()=>{
+httpServer.listen(8000, () => {
     console.log("Port Connected")
 })

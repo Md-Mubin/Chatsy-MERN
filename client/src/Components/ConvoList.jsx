@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getConvoList, selectedChat } from '../Store/Slices/convoListSlice'
+import { fetchConvoList, selectedChat } from '../Store/Slices/convoListSlice'
 import { PiDotsThreeOutlineVerticalThin } from "react-icons/pi";
 import { chattings } from '../Services/api';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
@@ -20,7 +20,7 @@ const ConvoList = () => {
 
     // useEffect
     useEffect(() => {
-        dispatch(getConvoList())
+        dispatch(fetchConvoList())
     }, [])
 
     useEffect(() => {
@@ -63,9 +63,9 @@ const ConvoList = () => {
 
     // handling selecting chat
     const handleSelectChat = async (selectedDatas) => {
+        console.log(selectedDatas)
         try {
-            const res = await chattings.getMassage(selectedDatas.id)
-            dispatch(selectedChat({ user: selectedDatas.user, res }))
+            dispatch(selectedChat(selectedDatas))
         } catch (error) {
             console.log(error)
         }
@@ -88,12 +88,12 @@ const ConvoList = () => {
                     allChatUser.length < 1
                         ? <p className='text-center text-[#88d4ca]'>No Conversation Found</p>
                         : allChatUser.map((datas) => (
-                            <ul onClick={() => handleSelectChat(datas)} key={datas.user._id} className='flex items-center gap-5 relative z-10'>
+                            <ul onClick={() => handleSelectChat({...datas.user, convoID : datas.id})} key={datas.user._id} className='flex items-center gap-5 relative z-10'>
                                 <li className='w-[60px] h-[60px] rounded-full bg-[#ffffff17] flex justify-center items-center'>
                                     {
                                         datas.user.avatar
                                             ? <img src={datas.user.avatar} alt="user image" />
-                                            : datas.user.name.charAt(0)
+                                            : datas?.user?.name.charAt(0)
                                     }
                                 </li>
                                 <li className='flex flex-col gap-1'>

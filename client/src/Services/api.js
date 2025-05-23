@@ -58,6 +58,12 @@ export const chattings = {
         return res.data
     },
 
+    // send massages
+    sendMassage : async(reciverID, content, conversationID)=>{
+        const res = await api.post("/chat/sendMsg", {reciverID, content, conversationID})
+        return res.data
+    },
+
     // get massages
     getMassage: async (conversationID) => {
         const res = await api.get(`/chat/getMsg/${conversationID}`)

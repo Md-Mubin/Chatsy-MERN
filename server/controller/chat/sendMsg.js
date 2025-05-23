@@ -5,6 +5,7 @@ const sendMsg = async (req, res) => {
 
     try {
         const { reciverID, content, conversationID } = req.body
+        console.log({ reciverID, content, conversationID })
 
         // if there is no reciver ID
         if (!reciverID) {
@@ -39,6 +40,8 @@ const sendMsg = async (req, res) => {
 
         // send last msg to conversation list schema
         await convoSchema.findByIdAndUpdate(existChat._id, { lastMsg: newMsg })
+
+        global.io.emit("newMassage", newMsg)
 
         return res.status(200).send(newMsg)
     } catch (error) {
