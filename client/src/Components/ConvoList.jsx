@@ -17,7 +17,7 @@ const ConvoList = () => {
     // datas from redux
     const loggedUserData = useSelector((state) => state.loggedUserData.user)
     const allChatLists = useSelector((state) => state.chatListsData.chatList)
-
+    
     // useEffect
     useEffect(() => {
         dispatch(fetchConvoList())

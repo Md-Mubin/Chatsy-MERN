@@ -17,18 +17,19 @@ const Chats = () => {
   // use effect
   useEffect(() => {
     dispatch(fetchMassages(selectedConvo.convoID))
-  }, [])
-
-  useEffect(() => {
-    inSocket()
-  }, [massage])
+  }, [selectedConvo])
 
   // sending massage handler
   const handleSendMassage = async (e) => {
     e.preventDefault()
+    setSendMsg("")
     dispatch(sendMassages({ reciverID: selectedConvo._id, content: sendMsg, conversationID: selectedConvo.convoID }))
   }
-
+  
+  useEffect(() => {
+    inSocket()
+  }, [])
+  
   return (
     <>
       <section className='p-4'>
@@ -61,7 +62,7 @@ const Chats = () => {
               ?
               massage.map((items, index) => (
                 <li key={index} className={`py-2 w-full flex justify-end ${items.reciver === user._id && "justify-start"}`}>
-                  <span className={`px-6 py-3 rounded-2xl text-lg 
+                  <span className={`px-5 py-3 rounded-lg text-lg 
                       ${items.reciver === user._id
                       ? "ring-transparent bg-[#88d4ca] text-[#000] rounded-bl-none"
                       : "ring-2 ring-[#88d4ca] text-[#88d4ca] rounded-br-none"}`}>
