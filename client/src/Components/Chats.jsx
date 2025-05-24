@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RiArrowUpDoubleLine } from "react-icons/ri"
 import { inSocket } from '../Services/socket'
 import { fetchMassages, sendMassages } from '../Store/Slices/convoListSlice'
 
 const Chats = () => {
+
+  // ref
+  const ref = useRef(null)
 
   // dispatch
   const dispatch = useDispatch()
@@ -25,11 +28,15 @@ const Chats = () => {
     setSendMsg("")
     dispatch(sendMassages({ reciverID: selectedConvo._id, content: sendMsg, conversationID: selectedConvo.convoID }))
   }
-  
+
+  useEffect(() => {
+    ref.current?.scrollIntoView({ behavior: "smooth" })
+  }, [massage])
+
   useEffect(() => {
     inSocket()
   }, [])
-  
+
   return (
     <>
       <section className='p-4'>
@@ -56,12 +63,12 @@ const Chats = () => {
         }
 
         {/* chats */}
-        <ul className='h-[80dvh] px-4'>
+        <ul className='h-[80dvh] px-4 overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-[#515257]'>
           {
             massage.length > 0
               ?
               massage.map((items, index) => (
-                <li key={index} className={`py-2 w-full flex justify-end ${items.reciver === user._id && "justify-start"}`}>
+                <li ref={ref} key={index} className={`py-2 w-full flex justify-end ${items.reciver === user._id && "justify-start"}`}>
                   <span className={`px-5 py-3 rounded-lg text-lg 
                       ${items.reciver === user._id
                       ? "ring-transparent bg-[#88d4ca] text-[#000] rounded-bl-none"
@@ -73,6 +80,7 @@ const Chats = () => {
               :
               <li className='text-center pt-[300px] text-[#88d4ca] text-3xl italic'>No massage found. <br />Start Conversation by sending massage first.</li>
           }
+          {/* <div ref={ref}></div> */}
         </ul>
 
         {/* massage send input */}

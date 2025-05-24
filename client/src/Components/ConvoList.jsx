@@ -14,9 +14,9 @@ const ConvoList = () => {
     const [selectedUserId, setSelectedUserId] = useState("")
 
     // datas from redux
-    const loggedUserData = useSelector((state) => state.loggedUserData.user)
-    const allChatLists = useSelector((state) => state.chatListsData.chatList)
-    
+    const { user } = useSelector((state) => state.loggedUserData)
+    const { chatList, selectedConvo } = useSelector((state) => state.chatListsData)
+
     // useEffect
     useEffect(() => {
         dispatch(fetchConvoList())
@@ -25,15 +25,15 @@ const ConvoList = () => {
     useEffect(() => {
 
         try {
-            if (allChatLists) {
-                const arr = allChatLists.map((items) => {
-                    if (items.creator._id === loggedUserData._id) {
+            if (chatList) {
+                const arr = chatList.map((items) => {
+                    if (items.creator._id === user._id) {
                         return {
                             id: items._id,
                             user: items.participent,
                             lastMsg: items.lastMsg
                         }
-                    } else if (items.participent._id === loggedUserData._id) {
+                    } else if (items.participent._id === user._id) {
                         return {
                             id: items._id,
                             user: items.creator,
@@ -47,7 +47,7 @@ const ConvoList = () => {
             console.log(error)
         }
 
-    }, [allChatLists])
+    }, [chatList])
 
     // handling deleting chat user
     const handleDeleteChat = async (deleteChatID) => {
@@ -62,7 +62,9 @@ const ConvoList = () => {
     // handling selecting chat
     const handleSelectChat = async (selectedDatas) => {
         try {
-            dispatch(selectedChat(selectedDatas))
+            if (selectedDatas?.convoID !== selectedConvo?.convoID) {
+                dispatch(selectedChat(selectedDatas))
+            }
         } catch (error) {
             console.log(error)
         }
@@ -85,7 +87,7 @@ const ConvoList = () => {
                     allChatUser.length < 1
                         ? <p className='text-center text-[#88d4ca]'>No Conversation Found</p>
                         : allChatUser.map((datas) => (
-                            <ul onClick={() => handleSelectChat({...datas.user, convoID : datas.id})} key={datas.user._id} className='flex items-center gap-5 relative z-10'>
+                            <ul onClick={() => handleSelectChat({ ...datas.user, convoID: datas.id })} key={datas.user._id} className='flex items-center gap-5 relative z-10'>
                                 <li className='w-[60px] h-[60px] rounded-full bg-[#ffffff17] flex justify-center items-center'>
                                     {
                                         datas.user.avatar
@@ -96,7 +98,7 @@ const ConvoList = () => {
                                 <li className='flex flex-col gap-1'>
                                     {datas.user.name}
                                     <p className='text-sm opacity-60'>
-                                        {datas.lastMsg && datas.lastMsg.sender === loggedUserData._id && "You : "}
+                                        {datas.lastMsg && datas.lastMsg.sender === user._id && "You : "}
                                         {datas.lastMsg && datas.lastMsg.content}
                                     </p>
                                 </li>

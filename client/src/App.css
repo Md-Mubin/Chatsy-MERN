@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@plugin 'tailwind-scrollbar' {
+    nocompatible: true;
+    preferredStrategy: 'pseudoelements';
+}
+
 body {
     @apply bg-gradient-to-r from-[#0e0e14] to-[#2b2e36]
 }
