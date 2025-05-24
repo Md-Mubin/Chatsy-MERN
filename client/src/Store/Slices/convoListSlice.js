@@ -40,6 +40,19 @@ export const sendMassages = createAsyncThunk(
     }
 )
 
+// Async thunk to delete massages
+export const deleteMassages = createAsyncThunk(
+    'conversations/deleteMassage',
+    async (deleteConvoID) => {
+        try {
+            const response = await chattings.deleteConvo(deleteConvoID);
+            return response;
+        } catch (error) {
+            return error
+        }
+    }
+)
+
 const convoListSlice = createSlice({
     name: 'conversations',
     initialState: {
@@ -62,6 +75,9 @@ const convoListSlice = createSlice({
             })
             .addCase(fetchMassages.fulfilled, (state, action) => {
                 state.massage = action.payload
+            })
+            .addCase(deleteMassages.fulfilled, (state, action) => {
+                state.chatList = action.payload
             })
     }
 });

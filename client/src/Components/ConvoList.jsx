@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchConvoList, selectedChat } from '../Store/Slices/convoListSlice'
+import { deleteMassages, fetchConvoList, selectedChat } from '../Store/Slices/convoListSlice'
 import { PiDotsThreeOutlineVerticalThin } from "react-icons/pi";
-import { chattings } from '../Services/api';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
 
 const ConvoList = () => {
@@ -54,10 +53,9 @@ const ConvoList = () => {
     const handleDeleteChat = async (deleteChatID) => {
 
         try {
-            const res = await chattings.deleteConvo(deleteChatID)
-            toast.success(res.msg)
+            dispatch(deleteMassages(deleteChatID))
         } catch (error) {
-            toast.error(error.response.data.error)
+            console.log(error)
         }
     }
 
