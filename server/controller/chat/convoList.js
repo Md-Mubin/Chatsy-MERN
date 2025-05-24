@@ -13,7 +13,7 @@ const convoList = async (req, res) => {
                     participent: req.user.id
                 }
             ]
-        }).populate("creator", "name avatar email").populate("participent", "name avatar email").populate("lastMsg")
+        }).populate("creator", "name avatar email").populate("participent", "name avatar email").populate("lastMsg").sort({ "updatedAt": -1 })
 
         if (!conversation) {
             return res.status(400).send({ error: "No Coversation Found" })

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { chattings } from '../Services/api'
 import { useDispatch } from 'react-redux'
-import { fetchConvoList } from '../Store/Slices/convoListSlice'
+import { createConvoList, fetchConvoList } from '../Store/Slices/convoListSlice'
 import { Bounce, toast, ToastContainer } from 'react-toastify'
 import { PiUserCircleMinusLight, PiUserCirclePlusLight } from 'react-icons/pi'
 
@@ -19,11 +19,8 @@ const ConvoCreate = () => {
         e.preventDefault()
 
         try {
-            const res = await chattings.createConvo(addEmail)
-            
+            dispatch(createConvoList(addEmail))
             toast.success(res.msg)
-
-            dispatch(fetchConvoList())
             setAddEmail("")
         } catch (error) {
             toast.error(error.response.data.error)

@@ -14,6 +14,19 @@ export const fetchConvoList = createAsyncThunk(
     }
 )
 
+// Async thunk to get create conversation 
+export const createConvoList = createAsyncThunk(
+    'conversations/createConvoList',
+    async (participentEmail) => {
+        try {
+            const response = await chattings.createConvo(participentEmail);
+            return response;
+        } catch (error) {
+            return error
+        }
+    }
+)
+
 // Async thunk to get selected convo massages
 export const fetchMassages = createAsyncThunk(
     'conversations/getMassages',
@@ -75,6 +88,9 @@ const convoListSlice = createSlice({
             })
             .addCase(fetchMassages.fulfilled, (state, action) => {
                 state.massage = action.payload
+            })
+            .addCase(createConvoList.fulfilled, (state, action) => {
+                state.chatList.push(action.payload)
             })
             .addCase(deleteMassages.fulfilled, (state, action) => {
                 state.chatList = action.payload
