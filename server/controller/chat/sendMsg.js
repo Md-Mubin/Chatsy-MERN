@@ -5,7 +5,6 @@ const sendMsg = async (req, res) => {
 
     try {
         const { reciverID, content, conversationID } = req.body
-        console.log({ reciverID, content, conversationID })
 
         // if there is no reciver ID
         if (!reciverID) {

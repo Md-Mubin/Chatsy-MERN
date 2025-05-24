@@ -63,7 +63,6 @@ const ConvoList = () => {
 
     // handling selecting chat
     const handleSelectChat = async (selectedDatas) => {
-        console.log(selectedDatas)
         try {
             dispatch(selectedChat(selectedDatas))
         } catch (error) {

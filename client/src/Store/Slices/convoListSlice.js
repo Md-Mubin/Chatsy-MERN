@@ -5,26 +5,38 @@ import { chattings } from '../../Services/api';
 export const fetchConvoList = createAsyncThunk(
     'conversations/getList',
     async () => {
-        const response = await chattings.convoList();
-        return response;
+        try {
+            const response = await chattings.convoList();
+            return response;
+        } catch (error) {
+            return error
+        }
     }
 )
 
 // Async thunk to get selected convo massages
 export const fetchMassages = createAsyncThunk(
     'conversations/getMassages',
-    async (data) => {
-        const response = await chattings.getMassage(data.convoID);
-        return response;
+    async (conversationID) => {
+        try {
+            const response = await chattings.getMassage(conversationID);
+            return response;
+        } catch (error) {
+            return error
+        }
     }
 )
 
-// Async thunk to send conversation
+// Async thunk to send massages
 export const sendMassages = createAsyncThunk(
     'conversations/sendMassage',
-    async () => {
-        const response = await chattings.sendMassage();
-        return response;
+    async (datas) => {
+        try {
+            const response = await chattings.sendMassage(datas.reciverID, datas.content, datas.conversationID);
+            return response;
+        } catch (error) {
+            return error
+        }
     }
 )
 
@@ -49,7 +61,7 @@ const convoListSlice = createSlice({
                 state.chatList = action.payload
             })
             .addCase(fetchMassages.fulfilled, (state, action) => {
-               state.massage = action.payload
+                state.massage = action.payload
             })
     }
 });

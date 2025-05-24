@@ -1,31 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { RiArrowUpDoubleLine } from "react-icons/ri";
-// import { inSocket } from '../Services/socket';
-import { fetchMassages, newMassage } from '../Store/Slices/convoListSlice';
+import { RiArrowUpDoubleLine } from "react-icons/ri"
+import { inSocket } from '../Services/socket'
+import { fetchMassages, sendMassages } from '../Store/Slices/convoListSlice'
 
 const Chats = () => {
 
   // dispatch
   const dispatch = useDispatch()
 
+  // all hooks
   const [sendMsg, setSendMsg] = useState("")
-  const { selectedConvo } = useSelector((state) => state.chatListsData)
-  const loggedUserData = useSelector((state) => state.loggedUserData.user)
-  const selectedConvoMassages = useSelector((state) => state.chatListsData.massage)
+  const { selectedConvo, massage } = useSelector((state) => state.chatListsData)
+  const { user } = useSelector((state) => state.loggedUserData)
 
-  // const handleSendMassage = async (e) => {
-  //   e.preventDefault()
-  //   dispatch(newMassage({reciverID : selectedChatDatas.user._id, content: send, conversationID: selectedChatDatas.convoID}))
-  // }
+  // use effect
   useEffect(() => {
-    dispatch(fetchMassages())
+    dispatch(fetchMassages(selectedConvo.convoID))
   }, [])
 
-  console.log(selectedConvo)
-  // useEffect(() => {
-  //   inSocket()
-  // }, [selectedChatDatas])
+  useEffect(() => {
+    inSocket()
+  }, [massage])
+
+  // sending massage handler
+  const handleSendMassage = async (e) => {
+    e.preventDefault()
+    dispatch(sendMassages({ reciverID: selectedConvo._id, content: sendMsg, conversationID: selectedConvo.convoID }))
+  }
 
   return (
     <>
@@ -55,24 +57,29 @@ const Chats = () => {
         {/* chats */}
         <ul className='h-[80dvh] px-4'>
           {
-            selectedConvoMassages.map((items) => (console.log(items),
-              <li key={items._id} className={`py-2 w-full flex justify-end ${items.reciver === loggedUserData._id && "justify-start"}`}>
-                <span className={`px-6 py-4 rounded-2xl text-lg 
-                      ${items.reciver === loggedUserData._id
-                    ? "ring-transparent bg-[#88d4ca] text-[#000]"
-                    : "ring-2 ring-[#88d4ca] text-[#88d4ca] "}`}>
-                  {items.content}
-                </span>
-              </li>
-            ))
+            massage.length > 0
+              ?
+              massage.map((items, index) => (
+                <li key={index} className={`py-2 w-full flex justify-end ${items.reciver === user._id && "justify-start"}`}>
+                  <span className={`px-6 py-3 rounded-2xl text-lg 
+                      ${items.reciver === user._id
+                      ? "ring-transparent bg-[#88d4ca] text-[#000] rounded-bl-none"
+                      : "ring-2 ring-[#88d4ca] text-[#88d4ca] rounded-br-none"}`}>
+                    {items.content}
+                  </span>
+                </li>
+              ))
+              :
+              <li className='text-center pt-[300px] text-[#88d4ca] text-3xl italic'>No massage found. <br />Start Conversation by sending massage first.</li>
           }
         </ul>
 
         {/* massage send input */}
         <ul className='w-full px-4'>
-          <form className='flex items-center gap-6 min-h-[5dvh]'>
+          <form onSubmit={handleSendMassage} className='flex items-center gap-6 min-h-[5dvh]'>
             <input
               type="text"
+              value={sendMsg}
               placeholder='Write Something'
               onChange={(e) => setSendMsg(e.target.value)}
               className='w-full pl-6 h-[60px] outline-none ring-2 ring-[#515257] rounded-full text-[#fff] text-xl placeholder:italic' />
