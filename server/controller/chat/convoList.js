@@ -18,7 +18,6 @@ const convoList = async (req, res) => {
         if (!conversation) {
             return res.status(400).send({ error: "No Coversation Found" })
         }
-
         res.status(200).send(conversation)
     } catch (error) {
         return res.status(500).send({ error: "Server Error" })

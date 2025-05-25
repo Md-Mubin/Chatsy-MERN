@@ -1,13 +1,13 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { chattings } from '../../Services/api';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { chattings } from '../../Services/api'
 
 // Async thunk to get conversation list
 export const fetchConvoList = createAsyncThunk(
     'conversations/getList',
     async () => {
         try {
-            const response = await chattings.convoList();
-            return response;
+            const response = await chattings.convoList()
+            return response
         } catch (error) {
             return error
         }
@@ -19,8 +19,8 @@ export const createConvoList = createAsyncThunk(
     'conversations/createConvoList',
     async (participentEmail) => {
         try {
-            const response = await chattings.createConvo(participentEmail);
-            return response;
+            const response = await chattings.createConvo(participentEmail)
+            return response
         } catch (error) {
             return error
         }
@@ -32,8 +32,8 @@ export const fetchMassages = createAsyncThunk(
     'conversations/getMassages',
     async (conversationID) => {
         try {
-            const response = await chattings.getMassage(conversationID);
-            return response;
+            const response = await chattings.getMassage(conversationID)
+            return response
         } catch (error) {
             return error
         }
@@ -45,8 +45,8 @@ export const sendMassages = createAsyncThunk(
     'conversations/sendMassage',
     async (datas) => {
         try {
-            const response = await chattings.sendMassage(datas.reciverID, datas.content, datas.conversationID);
-            return response;
+            const response = await chattings.sendMassage(datas.reciverID, datas.content, datas.conversationID)
+            return response
         } catch (error) {
             return error
         }
@@ -58,7 +58,7 @@ export const deleteMassages = createAsyncThunk(
     'conversations/deleteMassage',
     async (deleteConvoID) => {
         try {
-            const response = await chattings.deleteConvo(deleteConvoID);
+            const response = await chattings.deleteConvo(deleteConvoID)
             return response;
         } catch (error) {
             return error
@@ -90,7 +90,6 @@ const convoListSlice = createSlice({
                 state.massage = action.payload
             })
             .addCase(createConvoList.fulfilled, (state, action) => {
-                console.log(action.payload)
                 state.chatList.push(action.payload)
             })
             .addCase(deleteMassages.fulfilled, (state, action) => {
