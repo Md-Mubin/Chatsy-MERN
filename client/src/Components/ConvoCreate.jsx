@@ -1,8 +1,6 @@
 import { useState } from 'react'
-import { chattings } from '../Services/api'
 import { useDispatch } from 'react-redux'
-import { createConvoList, fetchConvoList } from '../Store/Slices/convoListSlice'
-import { Bounce, toast, ToastContainer } from 'react-toastify'
+import { createConvoList } from '../Store/Slices/convoListSlice'
 import { PiUserCircleMinusLight, PiUserCirclePlusLight } from 'react-icons/pi'
 
 const ConvoCreate = () => {
@@ -20,24 +18,14 @@ const ConvoCreate = () => {
 
         try {
             dispatch(createConvoList(addEmail))
-            toast.success(res.msg)
             setAddEmail("")
         } catch (error) {
-            toast.error(error.response.data.error)
+            console.log(error)
         }
     }
 
     return (
         <>
-            {/* ============ Toast Container ============ */}
-            <ToastContainer
-                position="top-right"
-                autoClose={800}
-                rtl={false}
-                theme="dark"
-                transition={Bounce}
-            />
-
             {/* ================== Convo Create Part ================== */}
             <section className='border-b-2 border-[#515257]'>
                 <ul>

@@ -7,7 +7,7 @@ import { fetchMassages, sendMassages } from '../Store/Slices/convoListSlice'
 const Chats = () => {
 
   // ref
-  const ref = useRef(null)
+  const chatContainer = useRef(null)
 
   // dispatch
   const dispatch = useDispatch()
@@ -30,7 +30,9 @@ const Chats = () => {
   }
 
   useEffect(() => {
-    ref.current?.scrollIntoView({ behavior: "smooth" })
+    if(chatContainer.current){
+      chatContainer.current.scrollTop = chatContainer.current.scrollHeight
+    }
   }, [massage])
 
   useEffect(() => {
@@ -63,12 +65,12 @@ const Chats = () => {
         }
 
         {/* chats */}
-        <ul className='h-[80dvh] px-4 overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-[#515257]'>
+        <ul ref={chatContainer} className='h-[80dvh] px-4 overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-[#515257]'>
           {
             massage.length > 0
               ?
               massage.map((items, index) => (
-                <li ref={ref} key={index} className={`py-2 w-full flex justify-end ${items.reciver === user._id && "justify-start"}`}>
+                <li  key={index} className={`py-2 w-full flex justify-end ${items.reciver === user._id && "justify-start"}`}>
                   <span className={`px-5 py-3 rounded-lg text-lg 
                       ${items.reciver === user._id
                       ? "ring-transparent bg-[#88d4ca] text-[#000] rounded-bl-none"

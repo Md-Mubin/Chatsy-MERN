@@ -90,6 +90,7 @@ const convoListSlice = createSlice({
                 state.massage = action.payload
             })
             .addCase(createConvoList.fulfilled, (state, action) => {
+                console.log(action.payload)
                 state.chatList.push(action.payload)
             })
             .addCase(deleteMassages.fulfilled, (state, action) => {
