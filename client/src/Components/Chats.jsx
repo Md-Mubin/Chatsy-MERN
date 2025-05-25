@@ -69,8 +69,8 @@ const Chats = () => {
           {
             massage.length > 0
               ?
-              massage.map((items, index) => (
-                <li  key={index} className={`py-2 w-full flex justify-end ${items.reciver === user._id && "justify-start"}`}>
+              massage.map((items) => (
+                <li key={items?._id} className={`py-2 w-full flex justify-end ${items.reciver === user._id && "justify-start"}`}>
                   <span className={`px-5 py-3 rounded-lg text-lg 
                       ${items.reciver === user._id
                       ? "ring-transparent bg-[#88d4ca] text-[#000] rounded-bl-none"
@@ -82,7 +82,6 @@ const Chats = () => {
               :
               <li className='text-center pt-[300px] text-[#88d4ca] text-3xl italic'>No massage found. <br />Start Conversation by sending massage first.</li>
           }
-          {/* <div ref={ref}></div> */}
         </ul>
 
         {/* massage send input */}
