@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @plugin 'tailwind-scrollbar' {
-    nocompatible: true;
-    preferredStrategy: 'pseudoelements';
+    nocompatible: true
+    preferredStrategy: 'pseudoelements'
 }
 
 body {
