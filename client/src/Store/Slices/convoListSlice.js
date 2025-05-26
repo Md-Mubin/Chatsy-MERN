@@ -9,7 +9,7 @@ export const fetchConvoList = createAsyncThunk(
             const response = await chattings.convoList()
             return response
         } catch (error) {
-            return error
+            throw error
         }
     }
 )
@@ -79,18 +79,23 @@ const convoListSlice = createSlice({
         },
         newMassage: (state, action) => {
             state.massage.push(action.payload)
-        },
+        }
     },
     extraReducers: (builder) => {
         builder
             .addCase(fetchConvoList.fulfilled, (state, action) => {
                 state.chatList = action.payload
             })
+            .addCase(fetchConvoList.rejected, (state, action) => {
+                state.error = action.error
+                localStorage.setItem("loggedUser", null)
+                localStorage.setItem("token", null)
+            })
             .addCase(fetchMassages.fulfilled, (state, action) => {
                 state.massage = action.payload
             })
             .addCase(createConvoList.fulfilled, (state, action) => {
-                state.chatList.push(action.payload)
+                state.chatList.unshift(action.payload)
             })
             .addCase(deleteMassages.fulfilled, (state, action) => {
                 state.chatList = action.payload
