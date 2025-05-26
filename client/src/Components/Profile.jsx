@@ -35,7 +35,7 @@ const Profile = () => {
             <li>
               <button
                 onClick={() => setEditOn(!editOn)}
-                className='px-6 py-2 absolute top-10 right-10 cursor-pointer text-4xl text-[#b9b9b9] hover:text-[#88d4ca]'>
+                className='px-6 py-2 absolute top-10 right-[30%] cursor-pointer text-4xl text-[#b9b9b9] hover:text-[#88d4ca]'>
                 <CiEdit />
               </button>
             </li>

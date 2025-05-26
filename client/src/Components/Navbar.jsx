@@ -5,6 +5,7 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { IoSettingsOutline } from "react-icons/io5";
 import { PiUserFocus  } from "react-icons/pi";
 import { useDispatch } from 'react-redux';
+import { logOutUser } from '../Store/Slices/authSlice';
 
 const Navbar = () => {
 
@@ -18,9 +19,6 @@ const Navbar = () => {
   const handleLogout = () => {
 
     dispatch(logOutUser())
-
-    localStorage.removeItem("loggedUser")
-    localStorage.removeItem("token")
     navigate("/")
   }
 
