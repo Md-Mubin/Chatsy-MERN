@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { CiEdit } from "react-icons/ci";
 
 const Profile = () => {
 
   const { user } = useSelector((state) => state.loggedUserData)
 
+  const [editOn, setEditOn] = useState(false)
   const [updateData, setUpdateData] = useState({
-    name : "",
-    pass : ""
+    name: "",
+    pass: ""
   })
 
   return (
@@ -22,24 +24,40 @@ const Profile = () => {
             }
           </li>
         </ul>
-        <ul className='w-[1100px] m-auto flex flex-col items-start'>
+
+        <ul className='relative w-[1100px] m-auto flex flex-col items-start'>
           <li className='text-5xl text-[#88d4ca] mt-5'>{user?.name}</li>
 
-          <li className='text-2xl text-[#515257] mt-32 relative w-full'>
-            <input
-              type="text"
-              onChange={(e)=>setUpdateData((prev)=>({...prev, name : e.target.value}))}
-              className='border-b-2 border-[#515257] outline-0 text-[#fff] pl-2' />
-            <label className='absolute top-[-50px] left-0'>Full Name</label>
-          </li>
+          <li><button onClick={() => setEditOn(!editOn)} className='px-6 py-2 absolute top-10 right-10 cursor-pointer text-4xl text-[#b9b9b9] hover:text-[#]'><CiEdit /></button></li>
 
-          <li className='text-2xl text-[#515257] mt-26 relative w-full'>
-            <input
-              type="password"
-              onChange={(e)=>setUpdateData((prev)=>({...prev, pass : e.target.value}))}
-              className='border-b-2 border-[#515257] outline-0 text-[#fff] pl-2' />
-            <label className='absolute top-[-50px] left-0'>Password</label>
-          </li>
+          {
+            editOn &&
+            (
+              <li>
+                <div className='text-2xl text-[#515257] mt-32 relative w-full'>
+                  <input
+                    type="text"
+                    value={user?.name}
+                    onChange={(e) => setUpdateData((prev) => ({ ...prev, name: e.target.value }))}
+                    className='border-b-2 border-[#515257] outline-0 text-[#fff] pl-2' />
+                  <label className='absolute top-[-50px] left-0 text-[#6b6b6b]'>Full Name</label>
+                </div>
+
+                <div className='text-2xl text-[#515257] mt-26 relative w-full'>
+                  <input
+                    type="password"
+                    onChange={(e) => setUpdateData((prev) => ({ ...prev, pass: e.target.value }))}
+                    className='border-b-2 border-[#515257] outline-0 text-[#fff] pl-2' />
+                  <label className='absolute top-[-50px] left-0 text-[#6b6b6b]'>Password</label>
+                </div>
+
+                <div className='flex gap-10 items-center mt-30'>
+                  <button className='px-8 py-2 bg-[#515257] text-2xl hover:bg-green-600 hover:text-[#fff] cursor-pointer duration-200 rounded-lg hover:rounded-none hover:translate-y-[-4px]'>Save</button>
+                  <button className='px-8 py-2 bg-[#515257] text-2xl hover:bg-red-600 hover:text-[#fff] cursor-pointer duration-200 rounded-lg hover:rounded-none hover:translate-y-[-4px]'>Cancel</button>
+                </div>
+              </li>
+            )
+          }
         </ul>
       </section>
     </>
