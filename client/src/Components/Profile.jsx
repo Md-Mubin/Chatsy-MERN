@@ -7,6 +7,8 @@ const Profile = () => {
   const { user } = useSelector((state) => state.loggedUserData)
 
   const [editOn, setEditOn] = useState(false)
+  const [saveUpdate, setSaveUpdate] = useState(false)
+  const [cancelEdit, setCancelEdit] = useState(false)
   const [updateData, setUpdateData] = useState({
     name: "",
     pass: ""
@@ -28,12 +30,23 @@ const Profile = () => {
         <ul className='relative w-[1100px] m-auto flex flex-col items-start'>
           <li className='text-5xl text-[#88d4ca] mt-5'>{user?.name}</li>
 
-          <li><button onClick={() => setEditOn(!editOn)} className='px-6 py-2 absolute top-10 right-10 cursor-pointer text-4xl text-[#b9b9b9] hover:text-[#]'><CiEdit /></button></li>
+          {
+            !editOn &&
+            <li>
+              <button
+                onClick={() => setEditOn(!editOn)}
+                className='px-6 py-2 absolute top-10 right-10 cursor-pointer text-4xl text-[#b9b9b9] hover:text-[#88d4ca]'>
+                <CiEdit />
+              </button>
+            </li>
+          }
 
           {
             editOn &&
             (
               <li>
+
+                {/* edit and update name */}
                 <div className='text-2xl text-[#515257] mt-32 relative w-full'>
                   <input
                     type="text"
@@ -43,6 +56,7 @@ const Profile = () => {
                   <label className='absolute top-[-50px] left-0 text-[#6b6b6b]'>Full Name</label>
                 </div>
 
+                {/* edit and update password */}
                 <div className='text-2xl text-[#515257] mt-26 relative w-full'>
                   <input
                     type="password"
@@ -51,9 +65,10 @@ const Profile = () => {
                   <label className='absolute top-[-50px] left-0 text-[#6b6b6b]'>Password</label>
                 </div>
 
+                {/* save and cancel button */}
                 <div className='flex gap-10 items-center mt-30'>
-                  <button className='px-8 py-2 bg-[#515257] text-2xl hover:bg-green-600 hover:text-[#fff] cursor-pointer duration-200 rounded-lg hover:rounded-none hover:translate-y-[-4px]'>Save</button>
-                  <button className='px-8 py-2 bg-[#515257] text-2xl hover:bg-red-600 hover:text-[#fff] cursor-pointer duration-200 rounded-lg hover:rounded-none hover:translate-y-[-4px]'>Cancel</button>
+                  <button onClick={()=>(setEditOn(!editOn), setEditOn(!editOn))} className='px-8 py-2 bg-[#515257] text-2xl hover:bg-green-600 hover:text-[#fff] cursor-pointer duration-200 rounded-lg hover:rounded-none hover:translate-y-[-4px]'>Save</button>
+                  <button onClick={()=>(setCancelEdit(!cancelEdit), setEditOn(!editOn))} className='px-8 py-2 bg-[#515257] text-2xl hover:bg-red-600 hover:text-[#fff] cursor-pointer duration-200 rounded-lg hover:rounded-none hover:translate-y-[-4px]'>Cancel</button>
                 </div>
               </li>
             )
