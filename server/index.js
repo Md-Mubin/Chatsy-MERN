@@ -17,6 +17,10 @@ const io = new Server(httpServer,{
 
 global.io = io
 
+io.on("connection", (socket) =>{
+    socket.join("join_room")
+})
+
 app.use(router)
 
 dbConnect()

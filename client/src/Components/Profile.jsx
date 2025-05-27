@@ -15,24 +15,37 @@ const Profile = () => {
   const [editOn, setEditOn] = useState(false)
   const [updateData, setUpdateData] = useState({
     name: user?.name,
-    pass: ""
+    pass: "",
+    avatar: ""
   })
 
   // handeling update data
-  const handleSaveUpdate = () => { 
+  const handleSaveUpdate = () => {
     dispatch(updatingUserData(updateData))
+    setUpdateData({
+      name: user?.name,
+      pass: "",
+      avatar: ""
+    })
     setEditOn(!editOn)
   }
-
+console.log(updateData)
   return (
     <>
       <section className='w-full h-[100dvh]'>
         <ul className='pt-20 pl-30 h-[150px] bg-[#51525766]'>
-          <li className='w-[120px] h-[120px] rounded-full bg-[#515257] border-8 border-[#191b1f] flex justify-center items-center text-5xl text-[#88d4ca]'>
+          <li className='w-[120px] h-[120px] relative overflow-hidden rounded-full bg-[#515257] border-8 border-[#191b1f] flex justify-center items-center text-5xl text-[#88d4ca]'>
             {
               user?.avatar
                 ? <img src={user?.avatar} alt={`${user?.name} name`} />
                 : user?.name.charAt(0)
+            }
+            {
+              editOn &&
+              <label htmlFor="avatar" className='absolute top-0 left-0 p-5 w-full h-full bg-[#000000b3] cursor-pointer z-10'>
+                <span className='text-lg'>Upload +</span>
+                <input type="file" id='avatar' name='avatar' onChange={(e) => setUpdateData((prev) => ({ ...prev, avatar: e.target.files[0] }))} />
+              </label>
             }
           </li>
         </ul>

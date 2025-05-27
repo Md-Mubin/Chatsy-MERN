@@ -6,8 +6,8 @@ export const updatingUserData = createAsyncThunk(
   'auth/update',
   async (updateData) => {
     try {
-      const {name, pass} = updateData
-      const response = await authoraizations.updateData(name, pass)
+      const {name, pass, avatar} = updateData
+      const response = await authoraizations.updateData(name, pass, avatar)
       return response;
     } catch (error) {
       return error

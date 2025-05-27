@@ -44,8 +44,12 @@ export const authoraizations = {
     },
 
     // update user profile
-    updateData: async (name, pass) => {
-        const res = await api.post("/auth/update", { name, pass })
+    updateData: async (name, pass, avatar) => {
+        const res = await api.post("/auth/update", { name, pass, avatar },{
+            headers : {
+                "Content-Type": "multipart/form-data"
+            }
+        })
         return res.data
     }
 }

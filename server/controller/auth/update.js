@@ -14,7 +14,7 @@ const update = async (req, res) => {
         if (pass) existUser.pass = pass;
 
         if (req?.file?.path) {
-            await cloudinary.uploader.destroy(existUser.avatar.split('/').pop().split('.')[0])
+            if(existUser?.avatar) await cloudinary.uploader.destroy(existUser.avatar.split('/').pop().split('.')[0])
             const result = await cloudinary.uploader.upload(req.file.path)
             existUser.avatar = result.url
             fs.unlinkSync(req.file.path)
