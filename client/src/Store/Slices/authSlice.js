@@ -1,4 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { authoraizations } from '../../Services/api';
+
+// Async thunk to delete massages
+export const updatingUserData = createAsyncThunk(
+  'auth/update',
+  async (updateData) => {
+    try {
+      const {name, pass} = updateData
+      const response = await authoraizations.updateData(name, pass)
+      return response;
+    } catch (error) {
+      return error
+    }
+  }
+)
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -15,6 +30,13 @@ export const authSlice = createSlice({
       localStorage.removeItem("token")
     }
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(updatingUserData.fulfilled, (state, action) => {
+        state.chatList = action.payload
+        localStorage.setItem("loggedUser", JSON.stringify(action.payload))
+      })
+  }
 })
 
 export const { loggedUser, logOutUser } = authSlice.actions

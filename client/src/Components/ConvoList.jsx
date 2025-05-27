@@ -86,8 +86,8 @@ const ConvoList = () => {
                 {
                     allChatUser.length < 1
                         ? <p className='text-center text-[#88d4ca]'>No Conversation Found</p>
-                        : allChatUser.map((datas) => (
-                            <ul onClick={() => handleSelectChat({ ...datas.user, convoID: datas.id })} key={datas?.user?._id} className='flex items-center gap-5 relative z-10'>
+                        : allChatUser.map((datas, index) => (
+                            <ul onClick={() => handleSelectChat({ ...datas.user, convoID: datas.id })} key={index} className='flex items-center gap-5 relative z-10'>
                                 <li className='w-[60px] h-[60px] rounded-full bg-[#ffffff17] flex justify-center items-center'>
                                     {
                                         datas?.user?.avatar

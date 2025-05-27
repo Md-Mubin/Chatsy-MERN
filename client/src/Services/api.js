@@ -41,6 +41,12 @@ export const authoraizations = {
     emailVerify: async (email, OTP) => {
         const res = await api.post("/auth/emailVarified", { email, OTP })
         return res.data
+    },
+
+    // update user profile
+    updateData: async (name, pass) => {
+        const res = await api.post("/auth/update", { name, pass })
+        return res.data
     }
 }
 
@@ -59,8 +65,8 @@ export const chattings = {
     },
 
     // send massages
-    sendMassage : async(reciverID, content, conversationID)=>{
-        const res = await api.post("/chat/sendMsg", {reciverID, content, conversationID})
+    sendMassage: async (reciverID, content, conversationID) => {
+        const res = await api.post("/chat/sendMsg", { reciverID, content, conversationID })
         return res.data
     },
 
