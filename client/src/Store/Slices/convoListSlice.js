@@ -69,7 +69,7 @@ export const deleteMassages = createAsyncThunk(
 const convoListSlice = createSlice({
     name: 'conversations',
     initialState: {
-        chatList: null,
+        chatList: [],
         selectedConvo: null,
         massage: []
     },

@@ -48,7 +48,7 @@ const ConvoList = () => {
         }
 
     }, [chatList])
-console.log(chatList)
+
     // handling deleting chat user
     const handleDeleteChat = async (deleteChatID) => {
 

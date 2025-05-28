@@ -18,7 +18,9 @@ const io = new Server(httpServer,{
 global.io = io
 
 io.on("connection", (socket) =>{
-    socket.join("join_room")
+    socket.on("join_room", (convoID)=>{
+        console.log(convoID)
+    })
 })
 
 app.use(router)
