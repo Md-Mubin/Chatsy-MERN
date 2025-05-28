@@ -26,18 +26,18 @@ const ConvoList = () => {
 
         try {
             if (chatList) {
-                const arr = chatList.map((items) => {
+                const arr = chatList.map((items) =>{
                     if (items?.creator?._id === user?._id) {
                         return {
-                            id: items._id,
-                            user: items.participent,
-                            lastMsg: items.lastMsg
+                            id: items?._id,
+                            user: items?.participent,
+                            lastMsg: items?.lastMsg
                         }
                     } else if (items?.participent?._id === user?._id) {
                         return {
-                            id: items._id,
-                            user: items.creator,
-                            lastMsg: items.lastMsg
+                            id: items?._id,
+                            user: items?.creator,
+                            lastMsg: items?.lastMsg
                         }
                     }
                 })
@@ -48,7 +48,7 @@ const ConvoList = () => {
         }
 
     }, [chatList])
-
+console.log(chatList)
     // handling deleting chat user
     const handleDeleteChat = async (deleteChatID) => {
 

@@ -33,7 +33,7 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(updatingUserData.fulfilled, (state, action) => {
-        state.chatList = action.payload
+        state.user = action.payload
         localStorage.setItem("loggedUser", JSON.stringify(action.payload))
       })
   }
