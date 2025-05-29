@@ -8,11 +8,7 @@ const deleteConvo = async (req, res) => {
         return res.status(400).send({error : "Try Again"})
     }
 
-    const deleteConvo = await convoSchema.findOneAndDelete({
-        $or : [
-            {creator : req.user.id , participent : deletChatByUserId}, {creator : deletChatByUserId, participent : req.user.id}
-        ]
-    })
+    const deleteConvo = await convoSchema.findByIdAndDelete(deletChatByUserId)
 
     if(!deleteConvo){
         return res.status(400).send({error : "Try Again"})

@@ -27,9 +27,15 @@ const ConvoList = () => {
     }, [])
 
     useEffect(() => {
-        chatList.forEach(items => {
-            socket.emit("join_room", items._id)
-        })
+
+        try {
+            chatList.forEach(items => {
+                socket.emit("join_room", items._id)
+            })
+        } catch (error) {
+            console.log(error)
+        }
+
     }, [chatList.length])
 
     useEffect(() => {
@@ -79,7 +85,7 @@ const ConvoList = () => {
             console.log(error)
         }
     }
-
+console.log(allChatUser)
     return (
         <>
             {/* ================== Conversation List Part ================== */}
@@ -115,7 +121,7 @@ const ConvoList = () => {
                                 {
                                     selectedUserId === datas?.user?._id && (
                                         <li className={`absolute right-14 top-6 w-[80px] flex flex-col gap-1 z-50`}>
-                                            <button onClick={() => handleDeleteChat(datas?.user?._id)} className='cursor-pointer text-sm text-[#7f7f87] border border-[#7f7f87] hover:border-[#88d4ca] hover:text-[#88d4ca]'>Delete</button>
+                                            <button onClick={() => handleDeleteChat(datas?.id)} className='cursor-pointer text-sm text-[#7f7f87] border border-[#7f7f87] hover:border-[#88d4ca] hover:text-[#88d4ca]'>Delete</button>
                                             <button className='cursor-pointer text-sm text-[#7f7f87] border border-[#7f7f87] hover:border-[#88d4ca] hover:text-[#88d4ca]'>Block</button>
                                         </li>
                                     )
