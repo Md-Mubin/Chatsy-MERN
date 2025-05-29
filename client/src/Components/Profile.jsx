@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CiEdit } from "react-icons/ci";
 import { updatingUserData } from '../Store/Slices/authSlice';
@@ -9,7 +9,7 @@ const Profile = () => {
   const dispatch = useDispatch()
 
   // getting data from redux
-  const { user } = useSelector((state) => state.loggedUserData)
+  const { user, loading } = useSelector((state) => state.loggedUserData)
 
   // all hooks
   const [editOn, setEditOn] = useState(false)
@@ -23,13 +23,13 @@ const Profile = () => {
   const handleSaveUpdate = () => {
     dispatch(updatingUserData(updateData))
     setUpdateData({
-      name: user?.name,
+      name: updateData?.name,
       pass: "",
       avatar: ""
     })
     setEditOn(!editOn)
   }
-console.log(updateData)
+
   return (
     <>
       <section className='w-full h-[100dvh]'>
@@ -37,15 +37,24 @@ console.log(updateData)
           <li className='w-[120px] h-[120px] relative overflow-hidden rounded-full bg-[#515257] border-8 border-[#191b1f] flex justify-center items-center text-5xl text-[#88d4ca]'>
             {
               user?.avatar
-                ? <img src={user?.avatar} alt={`${user?.name} name`} />
-                : user?.name.charAt(0)
+                ? (
+                  loading
+                    ? <span className='skeleton'></span>
+                    : <img src={user?.avatar} alt={`${user?.name} name`} />
+                )
+                : (user.name.charAt(0))
             }
             {
-              editOn &&
-              <label htmlFor="avatar" className='absolute top-0 left-0 p-5 w-full h-full bg-[#000000b3] cursor-pointer z-10'>
-                <span className='text-lg'>Upload +</span>
-                <input type="file" id='avatar' name='avatar' onChange={(e) => setUpdateData((prev) => ({ ...prev, avatar: e.target.files[0] }))} />
-              </label>
+              editOn && (
+                updateData?.avatar
+                  ?
+                  <img src={URL.createObjectURL(updateData.avatar)} className='absolute left-0 top-0 w-full h-full' alt="preview of updated image" />
+                  :
+                  <label htmlFor="avatar" className='absolute top-0 left-0 flex justify-center items-center w-full h-full bg-[#000000b3] cursor-pointer z-10'>
+                    <span className='text-lg'>Upload +</span>
+                    <input type="file" id='avatar' name='avatar' className='hidden' onChange={(e) => setUpdateData((prev) => ({ ...prev, avatar: e.target.files[0] }))} />
+                  </label>
+              )
             }
           </li>
         </ul>
@@ -54,19 +63,19 @@ console.log(updateData)
           <li className='text-5xl text-[#88d4ca] mt-5'>{user?.name}</li>
 
           {
-            !editOn &&
-            <li>
-              <button
-                onClick={() => setEditOn(!editOn)}
-                className='px-6 py-2 absolute top-10 lg:right-[30%] cursor-pointer text-4xl text-[#b9b9b9] hover:text-[#88d4ca]'>
-                <CiEdit />
-              </button>
-            </li>
+            !editOn && (
+              <li>
+                <button
+                  onClick={() => setEditOn(!editOn)}
+                  className='px-6 py-2 absolute top-10 lg:right-[30%] cursor-pointer text-4xl text-[#b9b9b9] hover:text-[#88d4ca]'>
+                  <CiEdit />
+                </button>
+              </li>
+            )
           }
 
           {
-            editOn &&
-            (
+            editOn && (
               <li>
                 {/* edit and update name */}
                 <div className='text-2xl text-[#515257] mt-32 relative w-full'>
@@ -89,8 +98,19 @@ console.log(updateData)
 
                 {/* save and cancel button */}
                 <div className='flex gap-10 items-center mt-30'>
-                  <button onClick={handleSaveUpdate} className='px-8 py-2 bg-[#515257] text-2xl hover:bg-green-600 hover:text-[#fff] cursor-pointer duration-200 rounded-lg hover:rounded-none hover:translate-y-[-4px]'>Save</button>
-                  <button onClick={() => setEditOn(false)} className='px-8 py-2 bg-[#515257] text-2xl hover:bg-red-600 hover:text-[#fff] cursor-pointer duration-200 rounded-lg hover:rounded-none hover:translate-y-[-4px]'>Cancel</button>
+                  {/* edit button */}
+                  <button
+                    onClick={handleSaveUpdate}
+                    className='px-8 py-2 bg-[#515257] text-2xl hover:bg-green-600 hover:text-[#fff] cursor-pointer duration-200 rounded-lg hover:rounded-none hover:translate-y-[-4px]'>
+                    Save
+                  </button>
+
+                  {/* cancel button */}
+                  <button
+                    onClick={() => setEditOn(false)}
+                    className='px-8 py-2 bg-[#515257] text-2xl hover:bg-red-600 hover:text-[#fff] cursor-pointer duration-200 rounded-lg hover:rounded-none hover:translate-y-[-4px]'>
+                    Cancel
+                  </button>
                 </div>
               </li>
             )

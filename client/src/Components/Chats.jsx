@@ -14,7 +14,7 @@ const Chats = () => {
 
   // all hooks
   const [sendMsg, setSendMsg] = useState("")
-  const { selectedConvo, massage, chatList } = useSelector((state) => state.chatListsData)
+  const { selectedConvo, massage } = useSelector((state) => state.chatListsData)
   const { user } = useSelector((state) => state.loggedUserData)
 
   // use effect
@@ -36,8 +36,8 @@ const Chats = () => {
   }, [massage])
 
   useEffect(() => {
-    inSocket(chatList)
-  }, [chatList])
+    inSocket()
+  }, [massage.length])
 
   return (
     <>

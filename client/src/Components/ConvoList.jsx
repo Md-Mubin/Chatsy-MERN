@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteMassages, fetchConvoList, selectedChat } from '../Store/Slices/convoListSlice'
 import { PiDotsThreeOutlineVerticalThin } from "react-icons/pi";
-import { Bounce, toast, ToastContainer } from 'react-toastify';
+import { inSocket, socket } from '../Services/socket';
 
 const ConvoList = () => {
 
@@ -23,10 +23,20 @@ const ConvoList = () => {
     }, [])
 
     useEffect(() => {
+        inSocket()
+    }, [])
+
+    useEffect(() => {
+        chatList.forEach(items => {
+            socket.emit("join_room", items._id)
+        })
+    }, [chatList.length])
+
+    useEffect(() => {
 
         try {
             if (chatList) {
-                const arr = chatList.map((items) =>{
+                const arr = chatList.map((items) => {
                     if (items?.creator?._id === user?._id) {
                         return {
                             id: items?._id,
@@ -72,15 +82,6 @@ const ConvoList = () => {
 
     return (
         <>
-            {/* ============ Toast Container ============ */}
-            <ToastContainer
-                position="top-right"
-                autoClose={800}
-                rtl={false}
-                theme="dark"
-                transition={Bounce}
-            />
-
             {/* ================== Conversation List Part ================== */}
             <section className='convoListSec'>
                 {

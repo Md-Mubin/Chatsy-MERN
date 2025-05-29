@@ -7,6 +7,7 @@ export const fetchConvoList = createAsyncThunk(
     async () => {
         try {
             const response = await chattings.convoList()
+            console.log(response)
             return response
         } catch (error) {
             throw error
@@ -88,8 +89,8 @@ const convoListSlice = createSlice({
             })
             .addCase(fetchConvoList.rejected, (state, action) => {
                 state.error = action.error
-                localStorage.setItem("loggedUser", null)
-                localStorage.setItem("token", null)
+                localStorage.removeItem("loggedUser")
+                localStorage.removeItem("token")
             })
             .addCase(fetchMassages.fulfilled, (state, action) => {
                 state.massage = action.payload
