@@ -19,7 +19,7 @@ const ConvoList = () => {
     // useEffect
     useEffect(() => {
         dispatch(fetchConvoList())
-    }, [massage])
+    }, [massage, chatList.length])
 
     useEffect(() => {
         try {
