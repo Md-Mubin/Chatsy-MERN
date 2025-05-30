@@ -20,14 +20,13 @@ const ConvoList = () => {
     // useEffect
     useEffect(() => {
         dispatch(fetchConvoList())
-    }, [])
+    }, [chatList.length])
 
     useEffect(() => {
         inSocket()
     }, [])
 
     useEffect(() => {
-
         try {
             chatList.forEach(items => {
                 socket.emit("join_room", items._id)
@@ -35,7 +34,6 @@ const ConvoList = () => {
         } catch (error) {
             console.log(error)
         }
-
     }, [chatList.length])
 
     useEffect(() => {
@@ -85,7 +83,7 @@ const ConvoList = () => {
             console.log(error)
         }
     }
-console.log(allChatUser)
+    console.log(allChatUser)
     return (
         <>
             {/* ================== Conversation List Part ================== */}
