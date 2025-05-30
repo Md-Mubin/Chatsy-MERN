@@ -1,9 +1,8 @@
+import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { createConvoList } from '../Store/Slices/convoListSlice'
-import { PiUserCircleMinusLight, PiUserCirclePlusLight } from 'react-icons/pi'
 
-const ConvoCreate = () => {
+const GroupCreate = () => {
 
     // dispatch
     const dispatch = useDispatch()
@@ -61,4 +60,4 @@ const ConvoCreate = () => {
     )
 }
 
-export default ConvoCreate
+export default GroupCreate

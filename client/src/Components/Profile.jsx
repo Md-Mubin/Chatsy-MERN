@@ -27,7 +27,17 @@ const Profile = () => {
       pass: "",
       avatar: ""
     })
-    setEditOn(!editOn)
+    setEditOn(false)
+  }
+
+  // handeling cancel update
+  const handleCancelUpdate = () => {
+    setUpdateData({
+      name: user?.name,
+      pass: "",
+      avatar: ""
+    })
+    setEditOn(false)
   }
 
   return (
@@ -107,7 +117,7 @@ const Profile = () => {
 
                   {/* cancel button */}
                   <button
-                    onClick={() => setEditOn(false)}
+                    onClick={handleCancelUpdate}
                     className='px-8 py-2 bg-[#515257] text-2xl hover:bg-red-600 hover:text-[#fff] cursor-pointer duration-200 rounded-lg hover:rounded-none hover:translate-y-[-4px]'>
                     Cancel
                   </button>

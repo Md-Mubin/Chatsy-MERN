@@ -7,7 +7,6 @@ export const fetchConvoList = createAsyncThunk(
     async () => {
         try {
             const response = await chattings.convoList()
-            console.log(response)
             return response
         } catch (error) {
             throw error

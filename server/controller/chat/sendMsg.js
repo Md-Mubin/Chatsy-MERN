@@ -40,7 +40,7 @@ const sendMsg = async (req, res) => {
         // send last msg to conversation list schema
         await convoSchema.findByIdAndUpdate(existChat._id, { lastMsg: newMsg })
 
-        global.io.to(conversationID).emit("newMassage", newMsg)
+        global.io.emit("newMassage", newMsg)
 
         return res.status(200).send(newMsg)
     } catch (error) {

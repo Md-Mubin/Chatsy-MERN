@@ -9,7 +9,8 @@ import OTP from './Components/OTP'
 import NoPage from './Components/NoPage'
 import ChatPages from './Pages/ChatPages'
 import Profile from './Components/Profile'
-import Settings from './Components/Settings'
+import GroupLayout from './Layouts/GroupLayout'
+import GroupPage from './Pages/GroupPage'
 
 function App() {
   return (
@@ -25,11 +26,15 @@ function App() {
 
           <Route path='/chats' element={<ChatLayout />}>
             <Route index element={<ChatPages />} />
-            <Route path='/chats/setting' element={<Settings />} />
-            <Route path="/chats/profile" element={<Profile />} />
           </Route>
           
-          <Route path='*' element={<NoPage/>}/>
+          <Route path='/group' element={<GroupLayout />}>
+            <Route index element={<GroupPage />} />
+          </Route>
+
+          <Route path="/profile" element={<Profile />} />
+
+          <Route path='*' element={<NoPage />} />
         </Routes>
       </BrowserRouter>
     </>

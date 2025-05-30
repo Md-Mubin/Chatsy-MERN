@@ -5,7 +5,6 @@ import { inSocket } from '../Services/socket'
 import { fetchMassages, sendMassages } from '../Store/Slices/convoListSlice'
 
 const Chats = () => {
-
   // ref
   const chatContainer = useRef(null)
 
@@ -20,7 +19,7 @@ const Chats = () => {
   // use effect
   useEffect(() => {
     dispatch(fetchMassages(selectedConvo.convoID))
-  }, [massage.length])
+  }, [selectedConvo])
 
   // sending massage handler
   const handleSendMassage = async (e) => {
@@ -30,11 +29,11 @@ const Chats = () => {
   }
 
   useEffect(() => {
-    if(chatContainer.current){
+    if (chatContainer.current) {
       chatContainer.current.scrollTop = chatContainer.current.scrollHeight
     }
   }, [massage.length])
-
+  
   useEffect(() => {
     inSocket()
   }, [])
@@ -69,8 +68,8 @@ const Chats = () => {
           {
             massage.length > 0
               ?
-              massage.map((items) => (
-                <li key={items?._id} className={`py-2 w-full flex justify-end ${items.reciver === user._id && "justify-start"}`}>
+              massage.map((items, index) => (
+                <li key={items?._id || index} className={`py-2 w-full flex justify-end ${items.reciver === user._id && "justify-start"}`}>
                   <span className={`px-5 py-3 rounded-lg text-lg 
                       ${items.reciver === user._id
                       ? "ring-transparent bg-[#88d4ca] text-[#000] rounded-bl-none"

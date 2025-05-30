@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteMassages, fetchConvoList, selectedChat } from '../Store/Slices/convoListSlice'
 import { PiDotsThreeOutlineVerticalThin } from "react-icons/pi";
-import { socket } from '../Services/socket';
 
 const ConvoList = () => {
 
@@ -24,20 +23,7 @@ const ConvoList = () => {
 
     useEffect(() => {
         try {
-            if (socket && chatList.length > 0) {
-                chatList.forEach(items => {
-                    socket.emit("join_room", items._id)
-                })
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }, [chatList.length])
-
-    useEffect(() => {
-
-        try {
-            if (chatList) {
+            if (chatList.length > 0) {
                 const arr = chatList.map((items) => {
                     if (items?.creator?._id === user?._id) {
                         return {
@@ -80,8 +66,8 @@ const ConvoList = () => {
         } catch (error) {
             console.log(error)
         }
-    }
-    console.log(allChatUser)
+    } 
+
     return (
         <>
             {/* ================== Conversation List Part ================== */}

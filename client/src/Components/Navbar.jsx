@@ -2,8 +2,8 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router'
 import { BsChatDots } from "react-icons/bs"
 import { AiOutlineLogout } from "react-icons/ai";
-import { IoSettingsOutline } from "react-icons/io5";
-import { PiUserFocus  } from "react-icons/pi";
+import { HiOutlineUserGroup } from "react-icons/hi2";
+import { PiUserFocus } from "react-icons/pi";
 import { useDispatch } from 'react-redux';
 import { logOutUser } from '../Store/Slices/authSlice';
 
@@ -17,7 +17,6 @@ const Navbar = () => {
 
   // logout button handle
   const handleLogout = () => {
-
     dispatch(logOutUser())
     navigate("/")
   }
@@ -33,14 +32,14 @@ const Navbar = () => {
           </li>
 
           <li>
-            <Link to={"/chats/setting"} className='group'>
-              <IoSettingsOutline  className='group-hover:translate-y-[-10px] duration-200'/>
+            <Link to={"/group"} className='group'>
+              <HiOutlineUserGroup className='group-hover:translate-y-[-10px] duration-200' />
             </Link>
           </li>
 
           <li>
-            <Link to={"/chats/profile"} className='group'>
-            <PiUserFocus  className='group-hover:translate-y-[-10px] duration-200'/>
+            <Link to={"/profile"} className='group'>
+              <PiUserFocus className='group-hover:translate-y-[-10px] duration-200' />
             </Link>
           </li>
 
