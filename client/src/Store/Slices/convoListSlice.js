@@ -98,7 +98,6 @@ const convoListSlice = createSlice({
                 state.chatList.unshift(action.payload)
             })
             .addCase(deleteMassages.fulfilled, (state, action) => {
-                console.log(action.payload)
                 state.chatList = action.payload
             })
     }
