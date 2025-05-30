@@ -6,11 +6,11 @@ import Navbar from '../Components/Navbar'
 const GroupLayout = () => {
 
     // data from redux
-    const user = useSelector((state) => state.loggedUserData.user)
+    const { user } = useSelector((state) => state.loggedUserData)
 
     // checking
     if (!user) {
-        return <Navigate to={"/"}/>
+        return <Navigate to={"/"} />
     }
 
     return (

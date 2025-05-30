@@ -11,12 +11,15 @@ import ChatPages from './Pages/ChatPages'
 import Profile from './Components/Profile'
 import GroupLayout from './Layouts/GroupLayout'
 import GroupPage from './Pages/GroupPage'
+import ProfileLayout from './Layouts/ProfileLayout'
+import ProfilePage from './Pages/ProfilePage'
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
+          {/* for auth */}
           <Route path='/' element={<AuthLayout />}>
             <Route index element={<Login />} />
             <Route path='/register' element={<Register />} />
@@ -24,15 +27,20 @@ function App() {
             <Route path='/forget_password' element={<ForgetPass />} />
           </Route>
 
+          {/* for chats */}
           <Route path='/chats' element={<ChatLayout />}>
             <Route index element={<ChatPages />} />
           </Route>
-          
+
+          {/* for groups */}
           <Route path='/group' element={<GroupLayout />}>
             <Route index element={<GroupPage />} />
           </Route>
 
-          <Route path="/profile" element={<Profile />} />
+          {/* for profile */}
+          <Route path='/profile' element={<ProfileLayout />}>
+            <Route index element={<ProfilePage />} />
+          </Route>
 
           <Route path='*' element={<NoPage />} />
         </Routes>
