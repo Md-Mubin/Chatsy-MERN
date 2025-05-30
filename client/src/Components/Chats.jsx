@@ -20,7 +20,7 @@ const Chats = () => {
   // use effect
   useEffect(() => {
     dispatch(fetchMassages(selectedConvo.convoID))
-  }, [selectedConvo])
+  }, [massage.length])
 
   // sending massage handler
   const handleSendMassage = async (e) => {
@@ -33,11 +33,11 @@ const Chats = () => {
     if(chatContainer.current){
       chatContainer.current.scrollTop = chatContainer.current.scrollHeight
     }
-  }, [massage])
+  }, [massage.length])
 
   useEffect(() => {
     inSocket()
-  }, [massage.length])
+  }, [])
 
   return (
     <>

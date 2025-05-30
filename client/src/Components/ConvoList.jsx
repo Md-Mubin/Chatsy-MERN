@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteMassages, fetchConvoList, selectedChat } from '../Store/Slices/convoListSlice'
 import { PiDotsThreeOutlineVerticalThin } from "react-icons/pi";
-import { inSocket, socket } from '../Services/socket';
+import { socket } from '../Services/socket';
 
 const ConvoList = () => {
 
@@ -15,22 +15,20 @@ const ConvoList = () => {
 
     // datas from redux
     const { user } = useSelector((state) => state.loggedUserData)
-    const { chatList, selectedConvo } = useSelector((state) => state.chatListsData)
+    const { chatList, selectedConvo, massage } = useSelector((state) => state.chatListsData)
 
     // useEffect
     useEffect(() => {
         dispatch(fetchConvoList())
-    }, [chatList.length])
-
-    useEffect(() => {
-        inSocket()
-    }, [])
+    }, [massage])
 
     useEffect(() => {
         try {
-            chatList.forEach(items => {
-                socket.emit("join_room", items._id)
-            })
+            if (socket && chatList.length > 0) {
+                chatList.forEach(items => {
+                    socket.emit("join_room", items._id)
+                })
+            }
         } catch (error) {
             console.log(error)
         }
