@@ -15,7 +15,7 @@ const Chats = () => {
   const [sendMsg, setSendMsg] = useState("")
   const { selectedConvo, massage } = useSelector((state) => state.chatListsData)
   const { user } = useSelector((state) => state.loggedUserData)
-
+console.log(massage)
   // use effect
   useEffect(() => {
     dispatch(fetchMassages(selectedConvo.convoID))

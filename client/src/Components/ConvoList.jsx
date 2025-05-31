@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteMassages, fetchConvoList, selectedChat } from '../Store/Slices/convoListSlice'
 import { PiDotsThreeOutlineVerticalThin } from "react-icons/pi";
+import { getSocket } from '../Services/socket';
 
 const ConvoList = () => {
+    const socket = getSocket()
 
     // dispatch
     const dispatch = useDispatch()
@@ -66,7 +68,13 @@ const ConvoList = () => {
         } catch (error) {
             console.log(error)
         }
-    } 
+    }
+
+    chatList.forEach(items => {
+        if (socket) {
+            socket.emit("join_room", items?._id);
+        }
+    })
 
     return (
         <>
@@ -77,7 +85,7 @@ const ConvoList = () => {
                         ? <p className='text-center text-[#88d4ca]'>No Conversation Found</p>
                         : allChatUser.map((datas) => (
                             <ul onClick={() => handleSelectChat({ ...datas.user, convoID: datas.id })} key={datas?.id} className='flex items-center gap-5 relative z-10'>
-                                <li className='w-[60px] h-[60px] rounded-full bg-[#ffffff17] flex justify-center items-center'>
+                                <li className='w-[60px] h-[60px] rounded-full bg-[#ffffff17] flex justify-center items-center overflow-hidden'>
                                     {
                                         datas?.user?.avatar
                                             ? <img src={datas?.user?.avatar} alt="user image" />

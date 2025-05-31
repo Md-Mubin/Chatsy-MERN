@@ -15,5 +15,5 @@ const inSocket = ()=>{
         console.log("connect")
     })
 }
-
-export {inSocket, socket}
+const getSocket = () => socket;
+export {inSocket, getSocket}
