@@ -78,7 +78,6 @@ const convoListSlice = createSlice({
             state.selectedConvo = action.payload
         },
         newMassage: (state, action) => {
-            console.log(action.payload)
             state.massage.push(action.payload)
         }
     },

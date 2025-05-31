@@ -15,10 +15,12 @@ const Chats = () => {
   const [sendMsg, setSendMsg] = useState("")
   const { selectedConvo, massage } = useSelector((state) => state.chatListsData)
   const { user } = useSelector((state) => state.loggedUserData)
-console.log(massage)
+  console.log(massage)
   // use effect
   useEffect(() => {
-    dispatch(fetchMassages(selectedConvo.convoID))
+    if (selectedConvo?.convoID) {
+      dispatch(fetchMassages(selectedConvo.convoID))
+    }
   }, [selectedConvo])
 
   // sending massage handler
@@ -33,7 +35,7 @@ console.log(massage)
       chatContainer.current.scrollTop = chatContainer.current.scrollHeight
     }
   }, [massage.length])
-  
+
   useEffect(() => {
     inSocket()
   }, [])
