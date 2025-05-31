@@ -46,7 +46,7 @@ console.log(massage)
         {
           selectedConvo && (
             <ul className='flex items-center gap-4 text-[#88d4ca] border-b-2 border-[#515257] pb-4'>
-              <li className='w-[80px] h-[80px] rounded-full bg-[#ffffff17] flex justify-center items-center text-2xl'>
+              <li className='w-[80px] h-[80px] rounded-full bg-[#ffffff17] flex justify-center items-center text-2xl overflow-hidden'>
                 {
                   selectedConvo?.avatar
                     ? <img src={selectedConvo?.avatar} alt="user image" />
@@ -68,8 +68,8 @@ console.log(massage)
           {
             massage.length > 0
               ?
-              massage.map((items, index) => (
-                <li key={items?._id || index} className={`py-2 w-full flex justify-end ${items.reciver === user._id && "justify-start"}`}>
+              massage.map((items) => (
+                <li key={items?._id} className={`py-2 w-full flex justify-end ${items.reciver === user._id && "justify-start"}`}>
                   <span className={`px-5 py-3 rounded-lg text-lg 
                       ${items.reciver === user._id
                       ? "ring-transparent bg-[#88d4ca] text-[#000] rounded-bl-none"
