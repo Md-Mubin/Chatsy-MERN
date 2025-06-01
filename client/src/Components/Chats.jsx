@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RiArrowUpDoubleLine } from "react-icons/ri"
-import { inSocket } from '../Services/socket'
 import { fetchMassages, sendMassages } from '../Store/Slices/convoListSlice'
 
 const Chats = () => {
@@ -35,10 +34,6 @@ const Chats = () => {
       chatContainer.current.scrollTop = chatContainer.current.scrollHeight
     }
   }, [massage.length])
-
-  // useEffect(() => {
-  //   inSocket()
-  // }, [])
 
   return (
     <>

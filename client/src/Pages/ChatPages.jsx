@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 const ChatPages = () => {
     const { selectedConvo } = useSelector((state) => state.chatListsData)
-
+console.log(selectedConvo)
     return (
         <>
             <ul className='flex w-full'>

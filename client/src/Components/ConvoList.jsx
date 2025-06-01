@@ -41,7 +41,7 @@ const ConvoList = () => {
                     }
                 })
                 setAllChatUser(arr)
-            }else {
+            } else {
                 setAllChatUser([])
             }
         } catch (error) {
@@ -55,6 +55,10 @@ const ConvoList = () => {
 
         try {
             dispatch(deleteMassages(deleteChatID))
+            setSelectedUserId("")
+            if (selectedConvo && selectedConvo?.convoID === deleteChatID) {
+                dispatch(selectedChat(null))
+            }
         } catch (error) {
             console.log(error)
         }
@@ -72,7 +76,7 @@ const ConvoList = () => {
     }
 
     useEffect(() => {
-        if(chatList){
+        if (chatList) {
             chatList.forEach(items => {
                 if (socket) {
                     socket.emit("join_room", items?._id);
@@ -80,7 +84,7 @@ const ConvoList = () => {
             })
         }
     }, [chatList.length])
-console.log(chatList)
+
     useEffect(() => {
         inSocket()
     }, [])
