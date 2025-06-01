@@ -43,8 +43,8 @@ const Profile = () => {
   return (
     <>
       <section className='w-full h-[100dvh]'>
-        <ul className='pt-20 pl-30 h-[150px] bg-[#51525766]'>
-          <li className='w-[120px] h-[120px] relative overflow-hidden rounded-full bg-[#515257] border-8 border-[#191b1f] flex justify-center items-center text-5xl text-[#88d4ca]'>
+        <ul className='pt-20 pl-30 h-[150px] bg-gradient-to-l to-[#2b2e36]'>
+          <li className='w-[120px] h-[120px] relative overflow-hidden rounded-full bg-[#515257] border-8 border-[#0e1217] flex justify-center items-center text-5xl text-[#88d4ca]'>
             {
               user?.avatar
                 ? (
