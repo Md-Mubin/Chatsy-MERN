@@ -43,9 +43,15 @@ export const authoraizations = {
         return res.data
     },
 
-    // for reset password
-    resetPass: async (email) => {
+    // for forget password password
+    forgetpass: async (email) => {
         const res = await api.post("/auth/forgetpass", { email })
+        return res.data
+    },
+
+    // for submiting new password
+    resetPass: async (newPass, randomString, email) => {
+        const res = await api.post(`/auth/resetPass/${randomString}?email=${email}`, { newPass })
         return res.data
     },
 

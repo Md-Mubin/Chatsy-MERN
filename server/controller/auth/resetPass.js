@@ -16,10 +16,10 @@ const resetPass = async (req, res) => {
         if (!existUser) return res.status(400).send({ error: "Invalid Request" })
 
         existUser.pass = newPass
-        existUser.resetPassId = null
-        existUser.resetPassIdExpiresAt = null
+        existUser.resetPassId = undefined
+        existUser.resetPassIdExpiresAt = undefined
         existUser.save()
-        res.status(200).send({ error: "Password Reset Successfull" })
+        res.status(200).send({ msg: "Password Reset Successfull" })
     } catch (error) {
         return res.status(500).send({ error: "Server Error" })
     }

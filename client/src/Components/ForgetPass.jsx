@@ -1,23 +1,35 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router'
 import { authoraizations } from '../Services/api'
+import { Bounce, toast, ToastContainer } from 'react-toastify'
 
 const ForgetPass = () => {
 
     const [email, setEmail] = useState("")
 
-    const handleResetPass = async (e)=>{
+    const handleResetPass = async (e) => {
         e.preventDefault()
         try {
-            const response = await authoraizations.resetPass(email)
-            console.log(response)
+            const response = await authoraizations.forgetpass(email)
+            toast.success(response.msg)
         } catch (error) {
-            console.log(error)
+            toast.error(error.response.data.error)
         }
     }
 
     return (
         <>
+            {/* ============ Toast Container ============ */}
+            <ToastContainer
+                position="top-right"
+                autoClose={800}
+                rtl={false}
+                draggable
+                theme="dark"
+                transition={Bounce}
+            />
+
+            {/* ================== Forget Password Part Start ================== */}
             <section className='w-full h-[100dvh] grid tracking-widest'>
                 <ul className='bg-gradient-to-l from-[#0e0e14] to-[#2b2e36] w-[550px] m-auto p-10'>
                     <li className='text-[#fff] text-4xl text-center mb-10'>Please Enter Your Email to Reset Password</li>
@@ -29,8 +41,8 @@ const ForgetPass = () => {
                                 <input
                                     type="email"
                                     required
-                                    placeholder=' ' 
-                                    onChange={(e)=>setEmail(e.target.value)}/>
+                                    placeholder=' '
+                                    onChange={(e) => setEmail(e.target.value)} />
                                 <label>Email</label>
                             </div>
 

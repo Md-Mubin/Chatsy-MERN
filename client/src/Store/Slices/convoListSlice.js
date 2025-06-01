@@ -58,8 +58,9 @@ export const deleteMassages = createAsyncThunk(
     'conversations/deleteMassage',
     async (deleteConvoID) => {
         try {
-            const response = await chattings.deleteConvo(deleteConvoID)
-            return response;
+            await chattings.deleteConvo(deleteConvoID)
+            const updatedList = await chattings.convoList()
+            return updatedList;
         } catch (error) {
             return error
         }
@@ -78,6 +79,7 @@ const convoListSlice = createSlice({
             state.selectedConvo = action.payload
         },
         newMassage: (state, action) => {
+            console.log(action.payload)
             state.massage.push(action.payload)
         }
     },

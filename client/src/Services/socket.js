@@ -11,9 +11,11 @@ const inSocket = ()=>{
         store.dispatch(newMassage(res))
     })
 
+    socket.emit("join_user", store.getState().loggedUserData.user._id)
+
     socket.on("connect",()=>{
         console.log("connect")
     })
 }
-const getSocket = () => socket;
-export {inSocket, getSocket}
+
+export {inSocket, socket}

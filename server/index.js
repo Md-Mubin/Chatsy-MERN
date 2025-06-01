@@ -19,8 +19,12 @@ global.io = io
 
 io.on("connection", (socket) =>{
     socket.on("join_room", (convoID)=>{
-        console.log(convoID)
+        console.log("convo",convoID)
         socket.join(convoID)
+    })
+
+    socket.on("join_user", (joinID)=>{
+        console.log("logUserID",joinID)
     })
 })
 

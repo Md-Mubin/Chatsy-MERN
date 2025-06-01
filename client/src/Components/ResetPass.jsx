@@ -1,25 +1,63 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router'
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { authoraizations } from '../Services/api';
+import { Bounce, toast, ToastContainer } from 'react-toastify';
 
 const ResetPass = () => {
 
+    // naviagte
+    const navigate = useNavigate()
+
+    // state hooks
+    const [pass, setPass] = useState("")
     const [show, setShow] = useState(false)
+
+    // params
+    const { generatedString } = useParams()
+    const [searchParams] = useSearchParams()
+    const email = searchParams.get('email')
+
+    // handeling new password 
+    const handleSubmitNewPass = async (e) => {
+        e.preventDefault()
+
+        try {
+            const response = await authoraizations.resetPass(pass, generatedString, email)
+            toast.success(response.msg)
+            setTimeout(() => {
+                navigate("/")
+            }, 2000);
+        } catch (error) {
+            toast.error(error.response.data.error)
+        }
+    }
 
     return (
         <>
+            {/* ============ Toast Container ============ */}
+            <ToastContainer
+                position="top-right"
+                autoClose={800}
+                rtl={false}
+                draggable
+                theme="dark"
+                transition={Bounce}
+            />
+
+            {/* ================== Reset Password Part Start ================== */}
             <section className='w-full h-[100dvh] grid tracking-widest'>
                 <ul className='bg-gradient-to-l from-[#0e0e14] to-[#2b2e36] w-[550px] m-auto p-10'>
                     <li className='text-[#fff] text-4xl text-center mb-10'>Enter Your New Password</li>
                     <li>
-                        <form className='flex flex-col gap-5'>
+                        <form onSubmit={handleSubmitNewPass} className='flex flex-col gap-5'>
 
                             <div className='input-group'>
                                 <input
                                     type={`${show ? "text" : "password"}`}
                                     required
                                     placeholder=' '
-                                />
+                                    onChange={(e) => setPass(e.target.value)} />
                                 <label>Password</label>
 
                                 <span onClick={() => setShow(!show)} className='absolute top-5 right-5 text-2xl text-[#777] hover:text-[#28e98c] cursor-pointer duration-200'>

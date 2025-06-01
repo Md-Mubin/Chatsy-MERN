@@ -17,6 +17,11 @@ const convoSchema = new SCHEMA({
     lastMsg : {
         type : SCHEMA.Types.ObjectId,
         ref : "chatMsg"
+    }, 
+
+    msgSeen : {
+        type : Boolean, 
+        default : false
     }
 
 },{timestamps : true})

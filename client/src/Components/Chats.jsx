@@ -15,13 +15,13 @@ const Chats = () => {
   const [sendMsg, setSendMsg] = useState("")
   const { selectedConvo, massage } = useSelector((state) => state.chatListsData)
   const { user } = useSelector((state) => state.loggedUserData)
-  console.log(massage)
+
   // use effect
   useEffect(() => {
     if (selectedConvo?.convoID) {
       dispatch(fetchMassages(selectedConvo.convoID))
     }
-  }, [selectedConvo])
+  }, [selectedConvo, massage.length])
 
   // sending massage handler
   const handleSendMassage = async (e) => {
@@ -36,9 +36,9 @@ const Chats = () => {
     }
   }, [massage.length])
 
-  useEffect(() => {
-    inSocket()
-  }, [])
+  // useEffect(() => {
+  //   inSocket()
+  // }, [])
 
   return (
     <>

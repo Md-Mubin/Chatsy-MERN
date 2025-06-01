@@ -1,34 +1,22 @@
 import React from 'react'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 
 const GroupCreate = () => {
 
-    // dispatch
-    const dispatch = useDispatch()
 
     // hooks
-    const [show, setShow] = useState(false)
-    const [addEmail, setAddEmail] = useState("")
+    // const [show, setShow] = useState(false)
+    // const [addEmail, setAddEmail] = useState("")
 
-    // adding user with email
-    const handleAddEmail = async (e) => {
-        e.preventDefault()
-
-        try {
-            if (addEmail) {
-                dispatch(createConvoList(addEmail))
-                setAddEmail("")
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    // // adding user with email
+    // const handleAddEmail = async (e) => {
+    //     e.preventDefault()
+    // }
 
     return (
         <>
             {/* ================== Convo Create Part ================== */}
-            <section className='border-b-2 border-[#515257]'>
+            {/* <section className='border-b-2 border-[#515257]'>
                 <ul>
                     <li>
                         <h1 className='font-normal text-5xl text-[#88d4ca]'>Chatsy</h1>
@@ -55,7 +43,7 @@ const GroupCreate = () => {
                         </form>
                     </li>
                 </ul>
-            </section>
+            </section> */}
         </>
     )
 }
