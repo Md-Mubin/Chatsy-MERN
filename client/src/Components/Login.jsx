@@ -4,6 +4,7 @@ import { Bounce, toast, ToastContainer } from 'react-toastify'
 import { authoraizations } from '../Services/api'
 import { useDispatch } from 'react-redux'
 import { loggedUser } from '../Store/Slices/authSlice'
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
 
 const Login = () => {
 
@@ -14,10 +15,12 @@ const Login = () => {
   const navigate = useNavigate()
 
   // useState hooks 
+  const [show, setShow] = useState(false)
   const [loginForm, setLoginForm] = useState({
     email: "",
     pass: ""
   })
+  
   // handling submit part for registration
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -25,7 +28,7 @@ const Login = () => {
     try {
       const res = await authoraizations.login(loginForm)
       toast.success(res.msg)
-      
+
       setTimeout(() => {
         dispatch(loggedUser(res.loggedUser))
         navigate("/chats")
@@ -67,10 +70,17 @@ const Login = () => {
 
               <div className='input-group'>
                 <input
-                  type="password"
+                  type={`${show ? "text" : "password"}`}
                   placeholder=' '
                   onChange={(e) => setLoginForm((prev) => ({ ...prev, pass: e.target.value }))} />
                 <label>Password</label>
+                <span onClick={() => setShow(!show)} className='absolute top-5 right-5 text-2xl text-[#777] hover:text-[#28e98c] cursor-pointer duration-200'>
+                  {
+                    show
+                      ? <FaRegEye />
+                      : <FaRegEyeSlash />
+                  }
+                </span>
               </div>
 
               <div className='register_login'>
