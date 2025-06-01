@@ -15,7 +15,7 @@ const ProfileLayout = () => {
 
     return (
         <>
-            <div className='bg-gradient-to-br from-[#191921] to-[#22252c] w-full h-[100dvh] flex'>
+            <div className='w-full h-[100dvh] flex'>
                 <Navbar />
                 <Outlet />
             </div>
