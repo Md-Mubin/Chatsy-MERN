@@ -43,10 +43,16 @@ export const authoraizations = {
         return res.data
     },
 
+    // for reset password
+    resetPass: async (email) => {
+        const res = await api.post("/auth/forgetpass", { email })
+        return res.data
+    },
+
     // update user profile
     updateData: async (name, pass, avatar) => {
-        const res = await api.post("/auth/update", { name, pass, avatar },{
-            headers : {
+        const res = await api.post("/auth/update", { name, pass, avatar }, {
+            headers: {
                 "Content-Type": "multipart/form-data"
             }
         })
