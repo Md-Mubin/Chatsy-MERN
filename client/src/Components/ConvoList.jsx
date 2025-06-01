@@ -70,11 +70,13 @@ const ConvoList = () => {
         }
     }
 
-    chatList.forEach(items => {
-        if (socket) {
-            socket.emit("join_room", items?._id);
-        }
-    })
+    useEffect(() => {
+        chatList.forEach(items => {
+            if (socket) {
+                socket.emit("join_room", items?._id);
+            }
+        })
+    }, [massage.length])
 
     return (
         <>

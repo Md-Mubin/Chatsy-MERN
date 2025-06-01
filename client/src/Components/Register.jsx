@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { Bounce, toast, ToastContainer } from "react-toastify"
 import { authoraizations } from '../Services/api'
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
 
 const Register = () => {
 
@@ -9,6 +10,7 @@ const Register = () => {
     const navigate = useNavigate()
 
     // useState hooks 
+    const [show, setShow] = useState(false)
     const [regForm, setRegForm] = useState({
         name: "",
         email: "",
@@ -23,7 +25,7 @@ const Register = () => {
             const res = await authoraizations.registration(regForm)
             toast.success(res.msg)
             setTimeout(() => {
-                navigate(`/OTP/${regForm.email}`) 
+                navigate(`/OTP/${regForm.email}`)
             }, 2000);
         } catch (error) {
             toast.error(error.response.data.error)
@@ -70,10 +72,17 @@ const Register = () => {
 
                             <div className='input-group'>
                                 <input
-                                    type="password"
+                                    type={`${show ? "text" : "password"}`}
                                     placeholder=' '
                                     onChange={(e) => setRegForm((prev) => ({ ...prev, pass: e.target.value }))} />
                                 <label>Password</label>
+                                <span onClick={() => setShow(!show)} className='absolute top-5 right-5 text-2xl text-[#777] hover:text-[#28e98c] cursor-pointer duration-200'>
+                                    {
+                                        show
+                                            ? <FaRegEye />
+                                            : <FaRegEyeSlash />
+                                    }
+                                </span>
                             </div>
 
                             <div className='register_login justify-center!'>
