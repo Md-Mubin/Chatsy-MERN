@@ -49,8 +49,8 @@ const Login = () => {
       />
 
       {/* ================== Login Part Start ================== */}
-      <section className='bg-[#2b2b37] w-full h-[100dvh] grid tracking-widest'>
-        <ul className='bg-[#212121] w-[550px] m-auto p-10'>
+      <section className='w-full h-[100dvh] grid tracking-widest'>
+        <ul className='bg-gradient-to-l from-[#0e0e14] to-[#2b2e36] w-[550px] m-auto p-10'>
           <li className='text-[#fff] text-4xl text-center mb-10'>Please Login</li>
 
           <li>

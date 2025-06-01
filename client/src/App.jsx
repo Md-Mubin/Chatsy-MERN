@@ -25,7 +25,7 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/OTP/:email' element={<OTP />} />
             <Route path='/forget_password' element={<ForgetPass />} />
-            <Route path='/resetPass' element={<ResetPass/>}/>
+            <Route path='/resetPass/:generatedString' element={<ResetPass/>}/>
           </Route>
 
           {/* for chats */}
