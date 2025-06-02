@@ -37,7 +37,7 @@ const Chats = () => {
 
   return (
     <>
-      <section className='p-4'>
+      <section className='p-4 tracking-widest'>
 
         {/* selected chat's user datas */}
         {
@@ -67,11 +67,14 @@ const Chats = () => {
               ?
               massage.map((items) => (
                 <li key={items?._id} className={`py-2 w-full flex justify-end ${items.reciver === user._id && "justify-start"}`}>
-                  <span className={`px-5 py-3 rounded-lg text-lg 
+                  <span className={`px-5 py-3 rounded-lg text-lg flex flex-col gap-1
                       ${items.reciver === user._id
-                      ? "ring-transparent bg-[#88d4ca] text-[#000] rounded-bl-none"
-                      : "ring-2 ring-[#88d4ca] text-[#88d4ca] rounded-br-none"}`}>
+                      ? "ring-transparent bg-[#88d4ca] text-[#000] rounded-bl-none items-start"
+                      : "ring-2 ring-[#88d4ca] text-[#88d4ca] rounded-br-none items-end"}`}>
                     {items.content}
+                    <span className='text-[12px]'>
+                      {new Date(items.createdAt).toLocaleString()}
+                    </span>
                   </span>
                 </li>
               ))
