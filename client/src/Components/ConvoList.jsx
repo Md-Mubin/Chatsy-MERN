@@ -10,6 +10,7 @@ const ConvoList = () => {
     const dispatch = useDispatch()
 
     // useState hooks
+    const [active, setActive] = useState([])
     const [allChatUser, setAllChatUser] = useState([])
     const [selectedUserId, setSelectedUserId] = useState("")
 
@@ -87,6 +88,7 @@ const ConvoList = () => {
 
     useEffect(() => {
         inSocket()
+        socket.on("active_users", (res) => setActive(res))
     }, [])
 
     return (
@@ -98,11 +100,15 @@ const ConvoList = () => {
                         ? <p className='text-center text-[#88d4ca]'>No Conversation Found</p>
                         : allChatUser.map((datas) => (
                             <ul onClick={() => handleSelectChat({ ...datas.user, convoID: datas.id })} key={datas?.id} className='flex items-center gap-5 relative z-10'>
-                                <li className='w-[60px] h-[60px] rounded-full bg-[#ffffff17] flex justify-center items-center overflow-hidden'>
+                                <li className='w-[60px] h-[60px] rounded-full bg-[#ffffff17] flex justify-center items-center relative'>
                                     {
                                         datas?.user?.avatar
-                                            ? <img src={datas?.user?.avatar} alt="user image" />
+                                            ? <img src={datas?.user?.avatar} alt="user image" className='w-full h-full rounded-full'/>
                                             : datas?.user?.name.charAt(0)
+                                    }
+                                    {
+                                        active.length > 0 && active.includes(datas.user._id) &&
+                                        <span className='absolute bottom-0 right-0 z-[100] w-[15px] h-[15px] bg-[#00c767] rounded-full'></span>
                                     }
                                 </li>
                                 <li className='flex flex-col gap-1'>

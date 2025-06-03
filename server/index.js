@@ -11,19 +11,29 @@ const router = require("./router")
 app.use(express.json())
 app.use(cors())
 const httpServer = http.createServer(app)
-const io = new Server(httpServer,{
-    cors : "*"
+const io = new Server(httpServer, {
+    cors: "*"
 })
 
 global.io = io
 
-io.on("connection", (socket) =>{
-    socket.on("join_room", (convoID)=>{
+const allActiveUsers = new Map()
+
+io.on("connection", (socket) => {
+    socket.on("join_room", (convoID) => {
         socket.join(convoID)
     })
 
-    socket.on("join_user", (joinID)=>{
-        console.log("logUserID",joinID)
+    socket.on("join_user", (joinID) => {
+        allActiveUsers.set(socket.id, joinID)
+        io.emit("active_users", Array.from(allActiveUsers.values()))
+    })
+
+    socket.on("disconnect", () => {
+        allActiveUsers.delete(socket.id)
+        setTimeout(() => {
+            io.emit("active_users", Array.from(allActiveUsers.values()))
+        }, 4000);
     })
 })
 
