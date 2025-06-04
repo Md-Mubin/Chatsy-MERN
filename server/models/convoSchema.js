@@ -19,11 +19,6 @@ const convoSchema = new SCHEMA({
         ref : "chatMsg"
     }, 
 
-    msgSeen : {
-        type : Boolean, 
-        default : false
-    }
-
 },{timestamps : true})
 
 module.exports = mongoose.model("convoData", convoSchema)
