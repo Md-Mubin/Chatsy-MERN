@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 const ProfileLayout = () => {
 
     // data from redux
-    const { user } = useSelector((state) => state.loggedUserData)
+    const { user } = useSelector((state) => state.authSlice)
 
     // checking
     if (!user) {

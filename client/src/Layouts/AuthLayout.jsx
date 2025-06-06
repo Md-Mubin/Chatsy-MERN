@@ -5,7 +5,7 @@ import { Navigate, Outlet } from 'react-router'
 const AuthLayout = () => {
 
     // getting user data from redux
-    const { user } = useSelector((state) => state.loggedUserData)
+    const { user } = useSelector((state) => state.authSlice)
 
     // for rendering
     if (user) {

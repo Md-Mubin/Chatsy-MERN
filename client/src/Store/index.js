@@ -3,8 +3,5 @@ import authSlice from './Slices/authSlice'
 import convoListSlice from './Slices/convoListSlice'
 
 export default configureStore({
-    reducer : {
-        loggedUserData : authSlice,
-        chatListsData : convoListSlice 
-    }
+    reducer: { authSlice, convoListSlice }
 })

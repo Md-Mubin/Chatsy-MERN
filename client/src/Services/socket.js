@@ -15,7 +15,7 @@ const inSocket = ()=>{
         console.log("connect")
     })
 
-    socket.emit("join_user", store.getState().loggedUserData.user._id)
+    socket.emit("join_user", store.getState().authSlice.user._id)
 }
 
 export {inSocket, socket}

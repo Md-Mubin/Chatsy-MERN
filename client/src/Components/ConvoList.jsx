@@ -15,8 +15,8 @@ const ConvoList = () => {
     const [selectedUserId, setSelectedUserId] = useState("")
 
     // datas from redux
-    const { user } = useSelector((state) => state.loggedUserData)
-    const { chatList, selectedConvo, massage } = useSelector((state) => state.chatListsData)
+    const { user } = useSelector((state) => state.authSlice)
+    const { chatList, selectedConvo, massage } = useSelector((state) => state.convoListSlice)
 
     // useEffect
     useEffect(() => {

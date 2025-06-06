@@ -9,7 +9,7 @@ const Profile = () => {
   const dispatch = useDispatch()
 
   // getting data from redux
-  const { user, loading } = useSelector((state) => state.loggedUserData)
+  const { user, loading } = useSelector((state) => state.authSlice)
 
   // all hooks
   const [editOn, setEditOn] = useState(false)

@@ -12,8 +12,8 @@ const Chats = () => {
 
   // all hooks
   const [sendMsg, setSendMsg] = useState("")
-  const { selectedConvo, massage } = useSelector((state) => state.chatListsData)
-  const { user } = useSelector((state) => state.loggedUserData)
+  const { selectedConvo, massage } = useSelector((state) => state.convoListSlice)
+  const { user } = useSelector((state) => state.authSlice)
 
   // use effect
   useEffect(() => {

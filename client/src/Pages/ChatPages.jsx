@@ -4,7 +4,7 @@ import ConvoCreate from '../Components/ConvoCreate'
 import { useSelector } from 'react-redux'
 
 const ChatPages = () => {
-    const { selectedConvo } = useSelector((state) => state.chatListsData)
+    const { selectedConvo } = useSelector((state) => state.convoListSlice)
 
     return (
         <>
