@@ -54,11 +54,12 @@ const ResetPass = () => {
 
                             <div className='input-group'>
                                 <input
+                                    id='reset_pass'
                                     type={`${show ? "text" : "password"}`}
                                     required
                                     placeholder=' '
                                     onChange={(e) => setPass(e.target.value)} />
-                                <label>Password</label>
+                                <label htmlFor='reset_pass'>Password</label>
 
                                 <span onClick={() => setShow(!show)} className='absolute top-5 right-5 text-2xl text-[#777] hover:text-[#28e98c] cursor-pointer duration-200'>
                                     {

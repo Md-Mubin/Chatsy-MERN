@@ -54,28 +54,31 @@ const Register = () => {
 
                             <div className='input-group'>
                                 <input
+                                    id='register_name'
                                     type="text"
                                     required
                                     placeholder=' '
                                     onChange={(e) => setRegForm((prev) => ({ ...prev, name: e.target.value }))} />
-                                <label>Name</label>
+                                <label htmlFor='register_name'>Name</label>
                             </div>
 
                             <div className='input-group'>
                                 <input
+                                    id='register_email'
                                     type="email"
                                     required
                                     placeholder=' '
                                     onChange={(e) => setRegForm((prev) => ({ ...prev, email: e.target.value }))} />
-                                <label>Email</label>
+                                <label htmlFor='register_email'>Email</label>
                             </div>
 
                             <div className='input-group'>
                                 <input
+                                id='register_pass'
                                     type={`${show ? "text" : "password"}`}
                                     placeholder=' '
                                     onChange={(e) => setRegForm((prev) => ({ ...prev, pass: e.target.value }))} />
-                                <label>Password</label>
+                                <label htmlFor='register_pass'>Password</label>
                                 <span onClick={() => setShow(!show)} className='absolute top-5 right-5 text-2xl text-[#777] hover:text-[#28e98c] cursor-pointer duration-200'>
                                     {
                                         show

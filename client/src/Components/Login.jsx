@@ -20,7 +20,7 @@ const Login = () => {
     email: "",
     pass: ""
   })
-  
+
   // handling submit part for registration
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -61,19 +61,21 @@ const Login = () => {
 
               <div className='input-group'>
                 <input
+                  id='login_email'
                   type="email"
                   required
                   placeholder=' '
                   onChange={(e) => setLoginForm((prev) => ({ ...prev, email: e.target.value }))} />
-                <label>Email</label>
+                <label htmlFor='login_email'>Email</label>
               </div>
 
               <div className='input-group'>
                 <input
+                  id='login_pass'
                   type={`${show ? "text" : "password"}`}
                   placeholder=' '
                   onChange={(e) => setLoginForm((prev) => ({ ...prev, pass: e.target.value }))} />
-                <label>Password</label>
+                <label htmlFor='login_pass'>Password</label>
                 <span onClick={() => setShow(!show)} className='absolute top-5 right-5 text-2xl text-[#777] hover:text-[#28e98c] cursor-pointer duration-200'>
                   {
                     show

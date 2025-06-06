@@ -39,11 +39,12 @@ const ForgetPass = () => {
 
                             <div className='input-group'>
                                 <input
+                                    id='forget_pass_email'
                                     type="email"
                                     required
                                     placeholder=' '
                                     onChange={(e) => setEmail(e.target.value)} />
-                                <label>Email</label>
+                                <label htmlFor='forget_pass_email'>Email</label>
                             </div>
 
                             <div className='register_login justify-end!'>

@@ -1,11 +1,10 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router'
 import { BsChatDots } from "react-icons/bs"
-import { AiOutlineLogout } from "react-icons/ai";
-import { HiOutlineUserGroup } from "react-icons/hi2";
-import { PiUserFocus } from "react-icons/pi";
-import { useDispatch } from 'react-redux';
-import { logOutUser } from '../Store/Slices/authSlice';
+import { AiOutlineLogout } from "react-icons/ai"
+import { PiUserFocus } from "react-icons/pi"
+import { useDispatch } from 'react-redux'
+import { logOutUser } from '../Store/Slices/authSlice'
 
 const Navbar = () => {
 
@@ -28,12 +27,6 @@ const Navbar = () => {
           <li>
             <Link to={"/chats"} className='group'>
               <BsChatDots className='group-hover:translate-y-[-10px] duration-200' />
-            </Link>
-          </li>
-
-          <li>
-            <Link to={"/group"} className='group'>
-              <HiOutlineUserGroup className='group-hover:translate-y-[-10px] duration-200' />
             </Link>
           </li>
 
