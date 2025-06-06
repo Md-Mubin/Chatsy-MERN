@@ -9,19 +9,19 @@ const ChatPages = () => {
     return (
         <>
             <ul className='flex w-full'>
-                <li className='pt-4 px-2 border-r-2 border-[#515257]'>
+                <li className='pt-4 px-2 border-r-2 border-[#515257] '>
                     <ConvoCreate />
                     <ConvoList />
                 </li>
                 {
                     selectedConvo
                         ?
-                        <li className='w-full'>
+                        <li className='w-full hidden lg:block'>
                             <Chats />
                         </li>
                         :
-                        <li className='flex justify-center items-center w-full h-full'>
-                            <h3 className='text-4xl text-[#515257]'>Please Select A Chat to Start/Continue Conversation</h3>
+                        <li className=' justify-center items-center w-full h-full hidden lg:flex'>
+                            <h3 className='text-3xl xl:text-4xl text-[#515257] text-center'>Please Select A Chat to Start/Continue Conversation</h3>
                         </li>
                 }
             </ul>
