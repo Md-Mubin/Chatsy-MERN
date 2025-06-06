@@ -8,8 +8,6 @@ import ForgetPass from './Components/ForgetPass'
 import OTP from './Components/OTP'
 import NoPage from './Components/NoPage'
 import ChatPages from './Pages/ChatPages'
-import GroupLayout from './Layouts/GroupLayout'
-import GroupPage from './Pages/GroupPage'
 import ProfileLayout from './Layouts/ProfileLayout'
 import ProfilePage from './Pages/ProfilePage'
 import ResetPass from './Components/ResetPass'
@@ -31,11 +29,6 @@ function App() {
           {/* for chats */}
           <Route path='/chats' element={<ChatLayout />}>
             <Route index element={<ChatPages />} />
-          </Route>
-
-          {/* for groups */}
-          <Route path='/group' element={<GroupLayout />}>
-            <Route index element={<GroupPage />} />
           </Route>
 
           {/* for profile */}
