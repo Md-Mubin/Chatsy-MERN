@@ -5,11 +5,9 @@ const ProfilePage = () => {
 
     return (
         <>
-            <ul className='flex w-full'>
-                <li className='w-full'>
-                    <Profile />
-                </li>
-            </ul>
+            <div className='w-full'>
+                <Profile />
+            </div>
         </>
     )
 }
