@@ -28,9 +28,9 @@ const verifyEmail = async (req, res) => {
             return res.status(400).send({ error: "Invalid OTP" })
         }
 
-        verified_ID.OTP = null,
-            verified_ID.OTP_expire = null,
-            verified_ID.otpFailedAttempt = null,
+        verified_ID.OTP = undefined,
+            verified_ID.OTP_expire = undefined,
+            verified_ID.otpFailedAttempt = undefined,
             verified_ID.isVerified = true,
             verified_ID.save()
         res.status(200).send({ msg: "Email Verification Successfull" })
