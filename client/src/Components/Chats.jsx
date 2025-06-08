@@ -61,21 +61,21 @@ const Chats = () => {
         }
 
         {/* chats */}
-        <ul ref={chatContainer} className='h-[80dvh] px-4 overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-[#515257]'>
+        <ul ref={chatContainer} className='h-[80dvh] px-4 pb-8 overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-track-transparent scrollbar-thumb-[#515257]'>
           {
-            massage.length > 0
+            massage && massage.length > 0
               ?
               massage.map((items) => (
-                <li key={items?._id} className={`py-2 w-full flex justify-end ${items.reciver === user._id && "justify-start"}`}>
-                  <span className={`px-5 py-3 rounded-lg text-lg flex flex-col gap-1
+                <li key={items?._id} className={`py-2 w-full`}>
+                  <div className={`max-w-[300px] w-fit px-5 py-3 rounded-lg text-lg flex flex-col gap-1 break-words 
                       ${items.reciver === user._id
-                      ? "ring-transparent bg-[#88d4ca] text-[#000] rounded-bl-none items-start"
-                      : "ring-2 ring-[#88d4ca] text-[#88d4ca] rounded-br-none items-end"}`}>
+                      ? "ring-transparent bg-[#88d4ca] text-[#000] rounded-bl-none mr-auto"
+                      : "ring-2 ring-[#88d4ca] text-[#88d4ca] rounded-br-none ml-auto"}`}>
                     {items.content}
-                    <span className='text-[12px]'>
+                    <span className={`text-[12px] ${items.reciver === user._id ? "mr-auto" : "ml-auto"}`}>
                       {new Date(items.createdAt).toLocaleString()}
                     </span>
-                  </span>
+                  </div>
                 </li>
               ))
               :

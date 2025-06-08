@@ -113,7 +113,7 @@ const ConvoList = () => {
                                 </li>
                                 <li className='flex flex-col gap-1'>
                                     {datas?.user?.name}
-                                    <p className='text-sm opacity-60'>
+                                    <p className='text-sm opacity-60 max-w-[200px] truncate'>
                                         {datas?.lastMsg && datas?.lastMsg?.sender === user?._id && "You : "}
                                         {datas?.lastMsg && datas?.lastMsg?.content}
                                     </p>
