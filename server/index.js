@@ -11,6 +11,8 @@ const router = require("./router")
 app.use(express.json())
 app.use(cors())
 const httpServer = http.createServer(app)
+
+// socket io cors
 const io = new Server(httpServer, {
     cors: "*"
 })
