@@ -27,19 +27,12 @@ const ConvoList = () => {
         try {
             if (chatList.length > 0) {
                 const arr = chatList.map((items) => {
-                    if (items?.creator?._id === user?._id) {
+                    if (items?.creator?._id === user?._id || items?.participent?._id === user?._id) {
                         return {
                             id: items?._id,
                             user: items?.participent,
                             lastMsg: items?.lastMsg,
-                            block : items?.block
-                        }
-                    } else if (items?.participent?._id === user?._id) {
-                        return {
-                            id: items?._id,
-                            user: items?.creator,
-                            lastMsg: items?.lastMsg,
-                            block : items?.block
+                            block: items?.block
                         }
                     }
                 })
@@ -80,14 +73,12 @@ const ConvoList = () => {
 
     // handling block chat user
     const handleBlock = async (blockChatID) => {
-
         try {
             dispatch(blockChat(blockChatID))
         } catch (error) {
             console.log(error)
         }
     }
-console.log(chatList)
 
     useEffect(() => {
         if (chatList) {
@@ -144,7 +135,13 @@ console.log(chatList)
                                     selectedUserId === datas?.user?._id && (
                                         <li className={`absolute right-14 top-6 w-[80px] flex flex-col gap-1 z-50`}>
                                             <button onClick={() => handleDeleteChat(datas?.id)} className='cursor-pointer text-sm text-[#7f7f87] border border-[#7f7f87] hover:border-[#88d4ca] hover:text-[#88d4ca]'>Delete</button>
-                                            <button onClick={() => handleBlock(datas?.id)} className='cursor-pointer text-sm text-[#7f7f87] border border-[#7f7f87] hover:border-[#88d4ca] hover:text-[#88d4ca]'>Block</button>
+                                            <button
+                                                onClick={() => handleBlock(datas?.id)}
+                                                className='cursor-pointer text-sm text-[#7f7f87] border border-[#7f7f87] hover:border-[#88d4ca] hover:text-[#88d4ca]'>
+                                                {
+                                                    datas?.block === true ?  "Un-Block" : "Block"
+                                                }
+                                            </button>
                                         </li>
                                     )
                                 }

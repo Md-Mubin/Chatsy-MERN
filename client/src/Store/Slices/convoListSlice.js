@@ -74,7 +74,6 @@ export const blockChat = createAsyncThunk(
         try {
             await chattings.blockChat(blockConvoID)
             const updatedList = await chattings.convoList()
-            console.log(updatedList)
             return updatedList
         } catch (error) {
             return error
