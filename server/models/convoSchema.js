@@ -19,6 +19,11 @@ const convoSchema = new SCHEMA({
         ref : "chatMsg"
     }, 
 
+    block : {
+        type : Boolean,
+        default : false
+    }
+
 },{timestamps : true})
 
 module.exports = mongoose.model("convoData", convoSchema)

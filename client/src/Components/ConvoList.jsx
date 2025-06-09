@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteMassages, fetchConvoList, selectedChat } from '../Store/Slices/convoListSlice'
+import { blockChat, deleteMassages, fetchConvoList, selectedChat } from '../Store/Slices/convoListSlice'
 import { PiDotsThreeOutlineVerticalThin } from "react-icons/pi";
 import { socket, inSocket } from '../Services/socket';
 
@@ -31,13 +31,15 @@ const ConvoList = () => {
                         return {
                             id: items?._id,
                             user: items?.participent,
-                            lastMsg: items?.lastMsg
+                            lastMsg: items?.lastMsg,
+                            block : items?.block
                         }
                     } else if (items?.participent?._id === user?._id) {
                         return {
                             id: items?._id,
                             user: items?.creator,
-                            lastMsg: items?.lastMsg
+                            lastMsg: items?.lastMsg,
+                            block : items?.block
                         }
                     }
                 })
@@ -50,6 +52,17 @@ const ConvoList = () => {
         }
 
     }, [chatList])
+
+    // handling selecting chat
+    const handleSelectChat = async (selectedDatas) => {
+        try {
+            if (selectedDatas?.convoID !== selectedConvo?.convoID) {
+                dispatch(selectedChat(selectedDatas))
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     // handling deleting chat user
     const handleDeleteChat = async (deleteChatID) => {
@@ -65,16 +78,16 @@ const ConvoList = () => {
         }
     }
 
-    // handling selecting chat
-    const handleSelectChat = async (selectedDatas) => {
+    // handling block chat user
+    const handleBlock = async (blockChatID) => {
+
         try {
-            if (selectedDatas?.convoID !== selectedConvo?.convoID) {
-                dispatch(selectedChat(selectedDatas))
-            }
+            dispatch(blockChat(blockChatID))
         } catch (error) {
             console.log(error)
         }
     }
+console.log(chatList)
 
     useEffect(() => {
         if (chatList) {
@@ -103,7 +116,7 @@ const ConvoList = () => {
                                 <li className='w-[60px] h-[60px] rounded-full bg-[#ffffff17] flex justify-center items-center relative'>
                                     {
                                         datas?.user?.avatar
-                                            ? <img src={datas?.user?.avatar} alt="user image" className='w-full h-full rounded-full'/>
+                                            ? <img src={datas?.user?.avatar} alt="user image" className='w-full h-full rounded-full' />
                                             : datas?.user?.name.charAt(0)
                                     }
                                     {
@@ -131,7 +144,7 @@ const ConvoList = () => {
                                     selectedUserId === datas?.user?._id && (
                                         <li className={`absolute right-14 top-6 w-[80px] flex flex-col gap-1 z-50`}>
                                             <button onClick={() => handleDeleteChat(datas?.id)} className='cursor-pointer text-sm text-[#7f7f87] border border-[#7f7f87] hover:border-[#88d4ca] hover:text-[#88d4ca]'>Delete</button>
-                                            <button className='cursor-pointer text-sm text-[#7f7f87] border border-[#7f7f87] hover:border-[#88d4ca] hover:text-[#88d4ca]'>Block</button>
+                                            <button onClick={() => handleBlock(datas?.id)} className='cursor-pointer text-sm text-[#7f7f87] border border-[#7f7f87] hover:border-[#88d4ca] hover:text-[#88d4ca]'>Block</button>
                                         </li>
                                     )
                                 }

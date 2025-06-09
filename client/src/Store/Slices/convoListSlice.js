@@ -67,6 +67,22 @@ export const deleteMassages = createAsyncThunk(
     }
 )
 
+// Async thunk to block user
+export const blockChat = createAsyncThunk(
+    'conversations/blockChat',
+    async (blockConvoID) => {
+        try {
+            await chattings.blockChat(blockConvoID)
+            const updatedList = await chattings.convoList()
+            console.log(updatedList)
+            return updatedList
+        } catch (error) {
+            return error
+        }
+    }
+)
+
+// slice 
 const convoListSlice = createSlice({
     name: 'conversations',
     initialState: {
@@ -99,6 +115,9 @@ const convoListSlice = createSlice({
                 state.chatList.unshift(action.payload)
             })
             .addCase(deleteMassages.fulfilled, (state, action) => {
+                state.chatList = action.payload
+            })
+            .addCase(blockChat.fulfilled, (state, action) => {
                 state.chatList = action.payload
             })
     }

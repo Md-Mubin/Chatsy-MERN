@@ -96,5 +96,11 @@ export const chattings = {
     deleteConvo: async (deletChatByUserId) => {
         const res = await api.post("/chat/deleteConvo", { deletChatByUserId })
         return res.data
+    },
+
+    // delete conversation
+    blockChat: async (blockConvo) => {
+        const res = await api.post("/chat/blockConvo", { blockConvo })
+        return res.data
     }
 }
