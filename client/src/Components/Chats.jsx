@@ -21,7 +21,7 @@ const Chats = () => {
       dispatch(fetchMassages(selectedConvo.convoID))
     }
   }, [selectedConvo, massage.length])
-
+  
   // sending massage handler
   const handleSendMassage = async (e) => {
     e.preventDefault()
@@ -84,17 +84,23 @@ const Chats = () => {
         </ul>
 
         {/* massage send input */}
-        <ul className='w-full px-4'>
-          <form onSubmit={handleSendMassage} className='flex items-center gap-6 min-h-[5dvh]'>
-            <input
-              type="text"
-              value={sendMsg}
-              placeholder='Write Something'
-              onChange={(e) => setSendMsg(e.target.value)}
-              className='w-full pl-6 h-[60px] outline-none ring-2 ring-[#515257] rounded-full text-[#fff] text-xl placeholder:italic' />
-            <button className='p-2 text-4xl ring-3 text-[#88d4ca] ring-[#88d4ca] hover:bg-[#88d4ca] hover:ring-0 hover:text-[#000] duration-200 rounded-full cursor-pointer'><RiArrowUpDoubleLine /></button>
-          </form>
-        </ul>
+        {
+          selectedConvo.block === false
+            ? (
+              <ul className='w-full px-4'>
+                <form onSubmit={handleSendMassage} className='flex items-center gap-6 min-h-[5dvh]'>
+                  <input
+                    type="text"
+                    value={sendMsg}
+                    placeholder='Write Something'
+                    onChange={(e) => setSendMsg(e.target.value)}
+                    className='w-full pl-6 h-[60px] outline-none ring-2 ring-[#515257] rounded-full text-[#fff] text-xl placeholder:italic' />
+                  <button className='p-2 text-4xl ring-3 text-[#88d4ca] ring-[#88d4ca] hover:bg-[#88d4ca] hover:ring-0 hover:text-[#000] duration-200 rounded-full cursor-pointer'><RiArrowUpDoubleLine /></button>
+                </form>
+              </ul>
+            )
+            : (<h3 className='text-center text-3xl text-[#88d4ca] font-semibold italic'>Can not send or recieve massages</h3>)
+        }
       </section>
     </>
   )
