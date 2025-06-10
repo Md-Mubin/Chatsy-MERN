@@ -11,6 +11,8 @@ import ChatPages from './Pages/ChatPages'
 import ProfileLayout from './Layouts/ProfileLayout'
 import ProfilePage from './Pages/ProfilePage'
 import ResetPass from './Components/ResetPass'
+import BlockLayout from './Layouts/BlockLayout'
+import BlockPage from './Pages/BlockPage'
 
 function App() {
   return (
@@ -29,6 +31,11 @@ function App() {
           {/* for chats */}
           <Route path='/chats' element={<ChatLayout />}>
             <Route index element={<ChatPages />} />
+          </Route>
+
+          {/* for block */}
+          <Route path='/blocked' element={<BlockLayout />}>
+            <Route index element={<BlockPage />} />
           </Route>
 
           {/* for profile */}
