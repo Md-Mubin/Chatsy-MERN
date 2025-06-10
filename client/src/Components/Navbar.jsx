@@ -5,6 +5,7 @@ import { AiOutlineLogout } from "react-icons/ai"
 import { PiUserFocus } from "react-icons/pi"
 import { useDispatch } from 'react-redux'
 import { logOutUser } from '../Store/Slices/authSlice'
+import { LiaUserLockSolid } from "react-icons/lia"
 
 const Navbar = () => {
 
@@ -33,6 +34,12 @@ const Navbar = () => {
           <li>
             <Link to={"/profile"} className='group'>
               <PiUserFocus className='group-hover:translate-y-[-10px] duration-200' />
+            </Link>
+          </li>
+
+          <li>
+            <Link to={"/blocked"} className='group'>
+              <LiaUserLockSolid className='group-hover:translate-y-[-10px] duration-200' />
             </Link>
           </li>
 

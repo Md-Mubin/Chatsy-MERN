@@ -103,7 +103,12 @@ const ConvoList = () => {
                     allChatUser.length < 1
                         ? <p className='text-center text-[#88d4ca]'>No Conversation Found</p>
                         : allChatUser.map((datas) => (
-                            <ul onClick={() => handleSelectChat({ ...datas.user, convoID: datas.id, block : datas.block })} key={datas?.id} className='flex items-center gap-5 relative z-10'>
+                            <ul
+                                key={datas?.id}
+                                onClick={() => handleSelectChat({ ...datas.user, convoID: datas.id, block: datas.block })}
+                                className='flex items-center gap-5 relative z-10'>
+
+                                {/* chat list's img */}
                                 <li className='w-[60px] h-[60px] rounded-full bg-[#ffffff17] flex justify-center items-center relative'>
                                     {
                                         datas?.user?.avatar
@@ -115,6 +120,8 @@ const ConvoList = () => {
                                         <span className='absolute bottom-0 right-0 z-[100] w-[15px] h-[15px] bg-[#00c767] rounded-full'></span>
                                     }
                                 </li>
+
+                                {/* chat list's name and last msg */}
                                 <li className='flex flex-col gap-1'>
                                     {datas?.user?.name}
                                     <p className='text-sm opacity-60 max-w-[200px] truncate'>
@@ -139,7 +146,7 @@ const ConvoList = () => {
                                                 onClick={() => handleBlock(datas?.id)}
                                                 className='cursor-pointer text-sm text-[#7f7f87] border border-[#7f7f87] hover:border-[#88d4ca] hover:text-[#88d4ca]'>
                                                 {
-                                                    datas?.block === true ?  "Un-Block" : "Block"
+                                                    datas?.block === true ? "Un-Block" : "Block"
                                                 }
                                             </button>
                                         </li>

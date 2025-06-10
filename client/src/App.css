@@ -119,7 +119,7 @@ nav ul li a, nav ul li button {
 }
 
 /* conversation list */
-.convoListSec {
+.convoListSec, .blockListSec {
     @apply w-[400px] mt-8 tracking-widest
 }
 
