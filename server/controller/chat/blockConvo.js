@@ -3,17 +3,13 @@ const convoSchema = require("../../models/convoSchema")
 const blockConvo = async (req, res) => {
 
     try {
-        const { blockChatID, blockerID } = req.body
+        const { blockConvo } = req.body
 
-        if (!blockChatID) {
+        if (!blockConvo) {
             return res.status(400).send({ error: "Try Again" })
         }
 
-        if(!blockerID){
-            return res.status(400).send({ error: "Try Again" })
-        }
-
-        const blockCheck = await convoSchema.findById(blockChatID)
+        const blockCheck = await convoSchema.findById(blockConvo)
 
         if (!blockCheck) {
             return res.status(400).send({ error: "Try Again" })
@@ -22,7 +18,7 @@ const blockConvo = async (req, res) => {
         blockCheck.block = !blockCheck.block
         await blockCheck.save()
 
-        return res.status(200).send({blockerID})
+        return res.status(200).send({ msg: blockCheck.block ? "Block Successful" : "Un-Block Successful" })
     } catch (error) {
         return res.status(500).send({ msg: "Server Error" })
     }
