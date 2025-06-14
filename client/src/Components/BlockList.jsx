@@ -69,7 +69,7 @@ const BlockList = () => {
     // handling block chat user
     const handleUnBlock = async (blockChatID) => {
         try {
-            dispatch(blockChat({ blockChatID, whoBlock: user._id }))
+            dispatch(blockChat(blockChatID))
             dispatch(selectedChat(null))
         } catch (error) {
             console.log(error)
