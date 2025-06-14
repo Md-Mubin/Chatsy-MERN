@@ -17,6 +17,19 @@ const BlockPage = () => {
                         <BlockList />
                     </li>
                 </ul>
+                <ul>
+                    {
+                        selectedConvo
+                            ?
+                            <li className='w-full hidden lg:block'>
+                                <Chats />
+                            </li>
+                            :
+                            <li className=' justify-center items-center w-full h-full hidden lg:flex'>
+                                <h3 className='text-3xl xl:text-4xl text-[#515257] text-center'>Please Select A Chat to see the conversation</h3>
+                            </li>
+                    }
+                </ul>
             </div>
         </>
     )
