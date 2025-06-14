@@ -6,7 +6,7 @@ import Chats from '../Components/Chats'
 const BlockPage = () => {
 
     const { selectedConvo } = useSelector((state) => state.convoListSlice)
-
+ 
     return (
         <>
             <div className='flex w-full'>
