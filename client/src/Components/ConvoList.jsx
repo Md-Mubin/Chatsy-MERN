@@ -71,8 +71,7 @@ const ConvoList = () => {
     // handling block chat user
     const handleBlock = async (blockChatID) => {
         try {
-            const res = dispatch(blockChat({blockChatID, whoBlock : user._id}))
-            console.log(res)
+            const res = dispatch(blockChat(blockChatID))
             dispatch(selectedChat(null))
         } catch (error) {
             console.log(error)
