@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import BlockList from '../Components/BlockList'
+import Chats from '../Components/Chats'
 
 const BlockPage = () => {
 
