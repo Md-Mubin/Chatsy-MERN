@@ -26,16 +26,13 @@ const ConvoList = () => {
     useEffect(() => {
         try {
             if (chatList.length > 0) {
-                const arr = chatList.map((items) => {
-                    if (items?.creator?._id === user?._id || items?.participent?._id === user?._id) {
-                        return {
-                            id: items?._id,
-                            user: items?.participent,
-                            lastMsg: items?.lastMsg,
-                            block: items?.block
-                        }
-                    }
-                })
+                const arr = chatList.filter((items) => (items?.creator?._id === user?._id || items?.participent?._id === user?._id) && items.block === false)
+                    .map((items) => ({
+                        id: items?._id,
+                        user: items?.participent,
+                        lastMsg: items?.lastMsg,
+                        block: items?.block
+                    }))
                 setAllChatUser(arr)
             } else {
                 setAllChatUser([])
@@ -74,7 +71,9 @@ const ConvoList = () => {
     // handling block chat user
     const handleBlock = async (blockChatID) => {
         try {
-            dispatch(blockChat(blockChatID))
+            const res = dispatch(blockChat({blockChatID, whoBlock : user._id}))
+            console.log(res)
+            dispatch(selectedChat(null))
         } catch (error) {
             console.log(error)
         }

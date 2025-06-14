@@ -123,7 +123,7 @@ nav ul li a, nav ul li button {
     @apply w-[400px] mt-8 tracking-widest
 }
 
-.convoListSec ul {
+.convoListSec ul, .blockListSec ul {
     @apply font-medium text-xl text-[#7f7f87] p-4 mt-4;
     background-image: linear-gradient(#88d4ca);
     background-repeat: no-repeat;

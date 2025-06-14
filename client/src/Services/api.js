@@ -99,8 +99,8 @@ export const chattings = {
     },
 
     // delete conversation
-    blockChat: async (blockConvo) => {
-        const res = await api.post("/chat/blockConvo", { blockConvo })
+    blockChat: async (blockChatInfo) => {
+        const res = await api.post("/chat/blockConvo", { blockChatID : blockChatInfo.blockChatID, blockerID : blockChatInfo.whoBlock})
         return res.data
     }
 }

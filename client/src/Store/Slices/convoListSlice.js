@@ -70,9 +70,9 @@ export const deleteMassages = createAsyncThunk(
 // Async thunk to block user
 export const blockChat = createAsyncThunk(
     'conversations/blockChat',
-    async (blockConvoID) => {
+    async (blocking) => {
         try {
-            await chattings.blockChat(blockConvoID)
+            await chattings.blockChat(blocking)
             const updatedList = await chattings.convoList()
             return updatedList
         } catch (error) {
