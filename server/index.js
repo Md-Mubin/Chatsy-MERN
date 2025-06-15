@@ -9,12 +9,18 @@ const dbConnect = require("./config/dbConnect")
 const router = require("./router")
 
 app.use(express.json())
-app.use(cors(process.env.FRONTEND_MAIN_URL))
+app.use(cors({
+    origin : process.env.FRONTEND_MAIN_URL,
+    credentials : true
+}))
 const httpServer = http.createServer(app)
 
 // socket io cors
 const io = new Server(httpServer, {
-    cors: process.env.FRONTEND_MAIN_URL
+    cors: {
+        origin : process.env.FRONTEND_MAIN_URL,
+        credentials : true
+    }
 })
 
 global.io = io
