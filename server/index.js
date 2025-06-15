@@ -9,12 +9,12 @@ const dbConnect = require("./config/dbConnect")
 const router = require("./router")
 
 app.use(express.json())
-app.use(cors())
+app.use(cors(process.env.FRONTEND_MAIN_URL))
 const httpServer = http.createServer(app)
 
 // socket io cors
 const io = new Server(httpServer, {
-    cors: "*"
+    cors: process.env.FRONTEND_MAIN_URL
 })
 
 global.io = io
@@ -43,6 +43,6 @@ app.use(router)
 
 dbConnect()
 
-httpServer.listen(8000, () => {
+httpServer.listen(process.env.PORT, () => {
     console.log("Port Connected")
 })

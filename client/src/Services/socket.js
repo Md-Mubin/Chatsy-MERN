@@ -5,7 +5,7 @@ import { newMassage } from "../Store/Slices/convoListSlice"
 let socket
 
 const inSocket = ()=>{
-    socket = io.connect("http://localhost:8000")
+    socket = io.connect(import.meta.env.VITE_BASE_URL_API)
 
     socket.on("newMassage",(res)=>{
         store.dispatch(newMassage(res))
