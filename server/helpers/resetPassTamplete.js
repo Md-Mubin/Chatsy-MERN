@@ -16,7 +16,7 @@ const resetPassTamplet = (name, userEmail, generatedString) => {
             We received a request to reset your password. Click the button below to set up a new password.
           </p>
           <p style="text-align: center; margin: 30px 0;">
-            <a href="http://localhost:5173/resetPass/${generatedString}?email=${userEmail}" style="background-color: #007BFF; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
+            <a href="${process.env.FRONTEND_MAIN_URL}/resetPass/${generatedString}?email=${userEmail}" style="background-color: #007BFF; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
               Reset Password
             </a>
           </p>
