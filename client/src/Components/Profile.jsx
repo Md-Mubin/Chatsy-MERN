@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CiEdit } from "react-icons/ci";
 import { updatingUserData } from '../Store/Slices/authSlice';
@@ -50,7 +50,7 @@ const Profile = () => {
                 ? (
                   loading
                     ? <span className='skeleton'></span>
-                    : <img src={user?.avatar} alt={`${user?.name} name`} />
+                    : <img loading='lazy' src={user?.avatar} alt={`${user?.name} name`} />
                 )
                 : (user.name.charAt(0))
             }
