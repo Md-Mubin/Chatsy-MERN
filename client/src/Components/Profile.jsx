@@ -58,7 +58,7 @@ const Profile = () => {
               editOn && (
                 updateData?.avatar
                   ?
-                  <img src={URL.createObjectURL(updateData.avatar)} className='absolute left-0 top-0 w-full h-full' alt="preview of updated image" />
+                  <img src={URL.createObjectURL(updateData.avatar)} loading='lazy' className='absolute left-0 top-0 w-full h-full' alt="preview of updated image" />
                   :
                   <label htmlFor="avatar" className='absolute top-0 left-0 flex justify-center items-center w-full h-full bg-[#000000b3] cursor-pointer z-10'>
                     <span className='text-lg'>Upload +</span>

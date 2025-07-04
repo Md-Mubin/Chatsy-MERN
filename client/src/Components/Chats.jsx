@@ -46,7 +46,7 @@ const Chats = () => {
               <li className='w-[80px] h-[80px] rounded-full bg-[#ffffff17] flex justify-center items-center text-2xl overflow-hidden'>
                 {
                   selectedConvo?.avatar
-                    ? <img src={selectedConvo?.avatar} alt="user image" />
+                    ? <img src={selectedConvo?.avatar} loading='lazy' alt="user image" />
                     : selectedConvo?.name.charAt(0)
                 }
               </li>

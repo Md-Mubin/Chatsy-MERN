@@ -110,7 +110,7 @@ const ConvoList = () => {
                                 <li className='w-[60px] h-[60px] rounded-full bg-[#ffffff17] flex justify-center items-center relative'>
                                     {
                                         datas?.user?.avatar
-                                            ? <img src={datas?.user?.avatar} alt="user image" className='w-full h-full rounded-full' />
+                                            ? <img src={datas?.user?.avatar} alt="user image" loading='lazy' className='w-full h-full rounded-full' />
                                             : datas?.user?.name.charAt(0)
                                     }
                                     {
